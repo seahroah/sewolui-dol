@@ -1023,18 +1023,669 @@ const SCENES = {
 
   // ─── 잠정 종결 (데모 끝) ───
   to_be_continued: {
-    chapter: "데모 종결 · 2장 중반부",
+    chapter: "제2장 · 음유시인 아룬드",
     loc: "켈라드리안 숲 북쪽 끝 · 밤",
     text: `<p>당신과 유리카는 자작나무 숲 북쪽 끝에 다다랐다. 숲을 지나자 들판이 펼쳐졌고, 그 너머에 먼 불빛이 보였다. <span class="emph">엘프의 이름을 가진 도시—이스나에 라 하드르.</span></p>
     <p>유리카는 당신을 흘깃 보고 웃었다.</p>
-    <div class="dialogue">"첫 번째 질문에 답했으니, 두 번째 질문을 받으러 가요. 저기, 저 도시에서."</div>
-    <p>당신은 목걸이 위에 손을 얹었다. 네 개의 보석 중 하나가 이미 당신의 심장 박동과 같은 리듬으로 숨쉬고 있었다.</p>`,
-    ending: "데모 종결 — 1장 완주, 2장 진입",
-    isDemoEnd: true
+    <div class="dialogue">"첫 번째 질문엔 답했지요—당신이 떠날 것인가. 이제 두 번째 질문을 받으러 가요. 저 도시의 성문에서 누군가가 당신을 이미 기다리고 있어요."</div>
+    <p>당신은 목걸이 위에 손을 얹었다. 네 개의 보석 중 하나가 이미 당신의 심장 박동과 같은 리듬으로 숨쉬고 있었다. 들판 너머 도시의 불빛은 별보다 가까웠고, 별보다 차가웠다.</p>`,
+    choices: [
+      { label: "곧장 성문을 향해 들판을 건넌다.", goto: "isnaye_arrival" },
+      { label: "\"두 번째 질문이 뭘까요?\" 먼저 묻는다.", goto: "isnaye_yurica_hint" }
+    ]
   },
 
   mom_talks_note_stub: { // safeguard: unused, kept for potential link
     chapter: "", loc: "", text: "<p>(연결 누락)</p>", choices: [{ label: "처음으로", goto: "start" }]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // 제2장 후반부 — 이스나에 라 하드르, 두 번째 질문, 켈라드리안 깊숙이
+  // ══════════════════════════════════════════════════════════════
+
+  isnaye_yurica_hint: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "켈라드리안 숲 북쪽 끝 · 밤",
+    text: `<p>유리카는 잠시 발걸음을 멈추고, 당신을 마주 보았다. 숲의 어둠이 그녀의 은빛 머리카락 위로 얇게 내려앉았다.</p>
+    <div class="dialogue">"두 번째 질문은 <span class="emph">이유</span>에 대한 거예요. 떠난 사람은 많지만, 끝까지 가는 사람은 적어요. 끝까지 가는 사람들은 대개, 그 이유를 아주 단순하게 대답했어요—단순해서 누구도 반박 못할 한 마디로."</div>
+    <p>그녀의 말끝은 별을 세는 목소리처럼 낮았다.</p>
+    <div class="dialogue">"당신 안에서 그 한 마디가 떠오를 때, 성문의 사람이 그걸 알아들을 거예요. 떠오르지 않으면—그 사람은 당신을 도시 밖에서 하룻밤 재울 거예요."</div>`,
+    choices: [
+      { label: "\"…가요.\" 이유를 미리 짓지 않는다.", goto: "isnaye_arrival" },
+      { label: "걷기 전에 목걸이에 손을 얹고 눈을 감는다.", goto: "isnaye_meditate" }
+    ]
+  },
+
+  isnaye_meditate: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "켈라드리안 숲 북쪽 끝 · 밤",
+    text: `<p>당신은 목걸이의 푸른 사파이어에 엄지손가락을 얹었다. 돌은 의외로 차갑지 않았다. 체온과 같은 온도였다.</p>
+    <p class="whisper">무엇을 위해 나는 떠났는가.</p>
+    <p>어머니의 얼굴이 먼저 떠올랐다. 그 다음에는 떠난 기억 없는 아버지. 그 다음엔 당신 자신의 열세 살—아무에게도 말하지 않고 앞산 꼭대기에 올라 가만히 지평선을 바라보던 그 순간. 그리고 마지막으로, <span class="emph">이미 당신을 알고 있는 사람들의 얼굴</span>이 줄지어 스쳐갔다. 본 적도 없는 얼굴인데, 그들은 모두 당신을 알아봤다.</p>
+    <p>답은 문장이 되지 않았다. 그러나 가슴 한복판에 <span class="emph">잔잔한 묵직함</span>이 자리 잡았다. 그거면 됐다.</p>`,
+    effects: { flag: { second_q_prepared: true }, stat: { mp: 1 } },
+    choices: [
+      { label: "눈을 뜨고 걸음을 옮긴다.", goto: "isnaye_arrival" }
+    ]
+  },
+
+  isnaye_arrival: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 성문",
+    text: `<p>들판을 건너는 동안 별이 하나씩 드러났다. 유리카는 줄곧 당신의 반 보 뒤를 걸었다. 앞서지 않고, 뒤처지지도 않는 거리였다.</p>
+    <p>성문은 생각보다 낮고 오래된 것이었다. 엘프의 언어로 새겨진 한 줄의 명문(銘文)이 문 위에 흐르고 있었다. 유리카가 속삭이듯 번역했다.</p>
+    <div class="dialogue">"<span class="emph">'이름을 버린 자만이 새로운 이름을 받는다.'</span>"</div>
+    <p>문 앞에는 한 사람이 서 있었다. 키가 몹시 크고, 어깨에는 낡은 외투를 걸쳤다. 횃불 빛 아래에서도 얼굴이 잘 보이지 않는 사람이었다.</p>
+    <div class="dialogue">"여정자여. 이 도시 안으로 들어오기 전에, 한 가지만 듣겠소. <span class="emph">그대는 무엇을 위해 걷는가.</span>"</div>`,
+    effects: { flag: { at_isnaye: true } },
+    choices: [
+      { label: "\"사랑하는 이를 지키기 위해서입니다.\"", goto: "isnaye_q_love", hint: "어머니·유리카를 떠올린다." },
+      { label: "\"제 이름의 뜻을 알기 위해서입니다.\"", goto: "isnaye_q_truth", hint: "크리스차넨의 정체." },
+      { label: "\"…아직 모르겠습니다.\"", goto: "isnaye_q_unknown", hint: "솔직하게." },
+      { label: "\"돌아가지 않기 위해서입니다.\"", goto: "isnaye_q_stubborn", hint: "물러서지 않는다는 선언." }
+    ]
+  },
+
+  isnaye_q_love: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 성문",
+    text: `<p>문지기는 한 박자 쉬고, 고개를 아주 얕게 끄덕였다.</p>
+    <div class="dialogue">"사랑은 문을 열게 하는 단어이지만, 끝까지 걷게 하는 단어는 못 되오. 그대는 길 끝에서 그 답을 한 번 더 고쳐 쓰게 될 것이오. 그러나 지금 이 순간의 답으로는 충분하오. 들어오시오."</div>
+    <p>문이 소리 없이 열렸다. 유리카는 당신을 흘끗 보고 미소 지었다. 문지기의 어깨를 지나는 찰나, 그의 <span class="whisper">낡은 외투 밑자락 안쪽으로 은빛 사슬 한 조각이 언뜻 비쳤다</span>.</p>
+    <p>당신은 직감했다. <span class="emph">이 사람도 한때 목걸이의 주인이었다.</span> 그리고 길 어딘가에서 사슬만 남기고 보석을 내려놓은 사람이다.</p>`,
+    effects: { flag: { answered_love: true, gate_keeper_carries_chain: true } },
+    choices: [
+      { label: "도시 안으로 걸어 들어간다.", goto: "isnaye_night" }
+    ]
+  },
+
+  isnaye_q_truth: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 성문",
+    text: `<p>문지기의 고개가 천천히 기울었다.</p>
+    <div class="dialogue">"진실을 위해 걷는 자는 많았고, 길 끝에서 진실이 자기가 생각한 모양이 아니었음에 무너지는 자도 많았소. 그대가 거기까지 감당할 준비가 되었기를. 들어오시오."</div>
+    <p>그는 옆으로 물러섰다. 당신이 성문을 지나 들어갈 때, 그의 외투 속에서 <span class="whisper">종이 한 장의 사각거리는 소리</span>가 났다. 낡은 점성술 도표 같은 것이었다.</p>
+    <p>도시의 밤거리가 당신 앞에 펼쳐졌다. 창문마다 얕은 불빛. 바람에 흔들리는 간판. 자갈 위로 울리는 자신의 발소리가, 이상하게도 <span class="emph">자신이 오래 전에도 이 거리를 걸은 적이 있는 것처럼</span> 귀에 익었다.</p>`,
+    effects: { flag: { answered_truth: true }, stat: { mp: 1 } },
+    choices: [
+      { label: "거리의 소리를 따라간다.", goto: "isnaye_night" }
+    ]
+  },
+
+  isnaye_q_unknown: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 성문",
+    text: `<p>문지기는 처음으로 소리 내어 웃었다. 그 웃음에는 비웃음이 없었다. 조용한 반가움이 있었다.</p>
+    <div class="dialogue">"좋은 답이오. 이유를 미리 정한 자는 길 위에서 자기 이유에 묶이기 쉽소. 모르고 걷는 자만이 길이 자기에게 주는 이유를 받을 수 있소. 들어오시오."</div>
+    <p>유리카가 옆에서 작게 숨을 내쉬었다. 안도에 가까운 숨이었다.</p>
+    <div class="dialogue whisper">"통과했어요. 제일 좋은 답이었어요."</div>
+    <p>성문 너머의 거리는 더 밝지도, 더 어둡지도 않았다. 다만 당신이 걸음을 내딛을 때마다 <span class="emph">앞길이 먼저 깨어나는</span> 듯한 느낌이 있었다.</p>`,
+    effects: { flag: { answered_unknown: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "도시 안으로 들어간다.", goto: "isnaye_night" }
+    ]
+  },
+
+  isnaye_q_stubborn: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 성문",
+    text: `<p>문지기는 한동안 말이 없었다. 횃불이 한 번 깜박였다.</p>
+    <div class="dialogue">"돌아가지 않겠다—그것은 답이 아니라 맹세요. 맹세로 성문을 통과한 자는 길 끝에서 그 맹세의 무게를 자기 발목에 묶게 되오. 그래도 괜찮다면."</div>
+    <p>그는 천천히 옆으로 물러섰다. 문이 열렸지만, 당신은 문턱 위에서 한 박자 멈춰야 했다. <span class="emph">발목이 실제로 조금 무거웠다.</span> 맹세의 무게가 이미 얹힌 탓이다.</p>
+    <p>유리카가 조용히 말했다.</p>
+    <div class="dialogue whisper">"멋있긴 해요. 하지만 그 대답은 길게 걸으면 다리가 아프게 돼요."</div>`,
+    effects: { flag: { answered_stubborn: true, oath_burden: true }, stat: { hp: -1 } },
+    choices: [
+      { label: "그래도 걸음을 뗀다.", goto: "isnaye_night" }
+    ]
+  },
+
+  isnaye_night: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 밤거리",
+    text: `<p>밤거리는 깊지 않았다. 상점 대부분은 이미 문을 내렸고, 오래된 서점 하나와 불빛이 새어나오는 점성술사의 다락, 그리고 여행자 숙소 간판만이 깨어 있었다.</p>
+    <p>유리카는 당신의 선택을 기다리는 얼굴이었다. 그녀는 이 도시를 잘 아는 듯했다.</p>
+    <div class="dialogue">"세 군데가 열려 있어요. 점성술사는 당신을 오래 기다렸어요—마르크 올빈이 말한 그 사람일 거예요. 서점은 사계절 목걸이에 관한 가장 오래된 기록이 있는 곳이고요. 숙소는… 몸을 쉬게 하는 곳이지요. 하나만 고를 수 있어요. 밤이 길지 않아요."</div>`,
+    choices: [
+      { label: "🔭 점성술사의 다락으로.", goto: "isnaye_astrologer", hint: "마르크의 스승을 만난다." },
+      { label: "📚 오래된 서점으로.", goto: "isnaye_library", hint: "목걸이의 역사를 읽는다." },
+      { label: "🛏 여행자 숙소로.", goto: "isnaye_inn", hint: "유리카와 조용한 밤을 보낸다." }
+    ]
+  },
+
+  isnaye_astrologer: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 점성술사의 다락",
+    text: `<p>다락으로 오르는 계단은 좁고 삐걱거렸다. 문을 두드리기도 전에 문이 열렸다. 머리가 하얗게 센 여인이 당신을 보고, 마치 오래 기다린 손님을 맞듯 한숨을 내쉬었다.</p>
+    <div class="dialogue">"아, 노래의 주인이구나. 마르크가 결국 당신을 찾았군요. 들어오세요. 차를 내오지요—식으면 별맛이 없거든요."</div>
+    <p>방 안은 별자리 도표와 낡은 가죽 두루마리로 가득했다. 천장에는 별자리 모양의 구멍이 뚫려 있어, 바깥 하늘의 실제 별과 천장의 별 그림이 겹쳐 보였다.</p>
+    <p>노파는 당신 앞에 작은 지도 한 장을 펼쳤다. 이스나미르 왕국 북부의 지도였고, 한 점에 붉은 모래알이 얹혀 있었다.</p>
+    <div class="dialogue">"당신이 다음에 가야 할 곳은 여기—<span class="emph">켈라드리안 숲의 옛 신단</span>이에요. 거기 두 번째 보석의 이름이 새겨진 돌이 있어요. 가는 길에 무엇을 만나든—<span class="whisper">뒤돌아보지 말고 걸으세요</span>. 특히 당신 이름을 부르는 목소리가 들려도요."</div>`,
+    effects: { flag: { met_astrologer: true, knows_ancient_shrine: true }, item: "북부 별지도" },
+    choices: [
+      { label: "\"그 목소리는 무엇입니까?\"", goto: "isnaye_voice_warning" },
+      { label: "\"당신은 왜 절 기다렸습니까?\"", goto: "isnaye_why_waited" },
+      { label: "지도를 받아 일어선다.", goto: "isnaye_depart_night" }
+    ]
+  },
+
+  isnaye_voice_warning: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 점성술사의 다락",
+    text: `<p>노파는 천장의 별 구멍을 오래 올려다봤다.</p>
+    <div class="dialogue">"악령의 노예들은 사람을 직접 베지 않아요. 그들은 당신 안의 이미 아픈 자리를 <span class="emph">당신이 사랑하는 이의 목소리로</span> 쑤셔요. 어머니의 목소리, 돌아가신 분의 목소리, 혹은 당신을 떠난 이의 목소리. 돌아보면 그 목소리에 얼굴이 입혀져요. 그 얼굴을 한 번 보면, 당신의 발은 길을 잊어요."</div>
+    <p>그녀는 당신을 똑바로 보았다.</p>
+    <div class="dialogue">"그래서 뒤돌아보지 말라는 거예요. 유리카가 옆에 있어요. 유리카의 목소리만 믿으세요. 유리카는 <span class="emph">당신의 아픈 자리를 모르는 사람</span>이에요. 그게 지금 당신에게 가장 귀한 조건이에요."</div>`,
+    effects: { flag: { warned_about_voices: true } },
+    choices: [
+      { label: "\"알겠습니다.\" 지도를 접어 품에 넣는다.", goto: "isnaye_depart_night" }
+    ]
+  },
+
+  isnaye_why_waited: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 점성술사의 다락",
+    text: `<p>노파의 눈에는 오래된 미소가 걸렸다.</p>
+    <div class="dialogue">"나는 그 노래를 너무 오래 전에 받았어요. 나의 스승의 스승의 스승이 물려준 노래였지요. 그 노래의 주인공이 태어나기도 전에요. 당신을 기다린 것은 내가 아니라, 노래가 기다린 거예요. 내 몸은 그저 그 기다림을 살아있게 하는 숙소였을 뿐이고요."</div>
+    <p>그녀는 깍지 낀 손을 풀었다. 손가락이 심하게 야위었다.</p>
+    <div class="dialogue">"당신을 만났으니 나는 이제 그 노래를 놓을 수 있어요. 그러니 당신은 이 노래를 잘 끝내야 해요. 아시겠지요."</div>
+    <p>당신의 가슴이 이상하게 답답해졌다. 누군가의 인생 전체가 당신에게 <span class="emph">한 숨의 작별</span>로 끝난다는 사실이, 무게로 얹혔다.</p>`,
+    effects: { stat: { mp: 1 }, flag: { astrologer_lifetime: true } },
+    choices: [
+      { label: "\"감사합니다.\" 깊게 고개를 숙이고 일어선다.", goto: "isnaye_depart_night" }
+    ]
+  },
+
+  isnaye_library: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 오래된 서점",
+    text: `<p>서점의 주인은 당신의 목걸이를 보자마자 말없이 안쪽 방으로 사라졌다. 잠시 후 그는 가죽으로 된 얇은 책 한 권을 들고 나왔다. 책 표지에는 네 개의 계절 문양이 압인되어 있었다.</p>
+    <div class="dialogue">"이걸 보러 오신 거지요. 사서 가시는 게 아닙니다. 여기서 읽고, 그다음 제게 돌려주세요. 이 책은 이 도시 바깥으로 나가선 안 돼요."</div>
+    <p>책 속의 문장은 고어체였지만 유리카가 낮게 번역해 주었다.</p>
+    <p class="whisper">"사계절의 목걸이는 네 번의 죽음을 담보로 네 번의 부활을 약속한다. 첫 보석은 <span class="emph">겨울</span>—떠남을 허락한다. 둘째 보석은 <span class="emph">봄</span>—길 위에서 사귄 자를 지키는 힘을 준다. 셋째 보석은 <span class="emph">여름</span>—이미 잃은 자를 한 번 불러낼 수 있다. 그러나 그 부름은 부르는 자의 계절 한 절(節)을 태운다. 넷째 보석은 <span class="emph">가을</span>—모든 것을 놓는 법을 가르친다."</p>
+    <p>유리카의 목소리가 마지막 문장에서 아주 살짝 떨렸다. 당신은 그 떨림을 놓치지 않았다.</p>`,
+    effects: { flag: { read_necklace_lore: true, knows_four_seasons_truth: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "\"유리카, 세 번째 보석의 의미를…\"", goto: "isnaye_ask_summer" },
+      { label: "책을 덮고 주인에게 돌려준 뒤 밖으로 나간다.", goto: "isnaye_depart_night" }
+    ]
+  },
+
+  isnaye_ask_summer: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 오래된 서점",
+    text: `<p>유리카는 책을 주인에게 돌려준 뒤에야 대답했다. 서점 밖의 골목으로 한참 걸어 나와, 빈 벤치 앞에서 걸음을 멈추었다.</p>
+    <div class="dialogue">"세 번째 보석은—<span class="emph">소중한 사람을 한 번 다시 부를 수 있는 대가로, 당신의 한 계절을 태워요</span>. 한 계절이 사라지면, 당신은 그 계절 동안의 기억과 감정 전체를 잃어요. 어떤 여름이었는지, 어떤 가을이었는지. 대부분의 사람은 이 선택 앞에서 부르고 싶은 이름과 <span class="emph">내 삶의 4분의 1</span>을 저울질해요."</div>
+    <p>그녀는 당신의 눈을 피하지 않았다.</p>
+    <div class="dialogue">"이 이야기를 미리 해 두는 이유는, 그 선택이 언젠가 당신 앞에 올 거예요. 그때 당신이 저울질을 하지 않았으면 좋겠어요. 저울은 사람을 지치게 하거든요."</div>`,
+    effects: { flag: { yurica_warned_summer: true, yurica_approves: true } },
+    choices: [
+      { label: "\"…알아두겠습니다.\"", goto: "isnaye_depart_night" }
+    ]
+  },
+
+  isnaye_inn: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 여행자 숙소",
+    text: `<p>숙소의 방은 작고 따뜻했다. 유리카는 등잔에 불을 붙이고, 창가 의자에 앉아 무릎을 세웠다. 당신은 반대쪽 침대에 걸터앉았다.</p>
+    <p>두 사람 사이에 긴 침묵이 흘렀다. 나쁜 침묵은 아니었다.</p>
+    <div class="dialogue">"피곤할 텐데요. 오늘 많이 걸었잖아요."</div>
+    <p>유리카의 목소리는 낮았다. 그녀는 창밖 별을 올려다봤다.</p>
+    <div class="dialogue">"당신과 걷는 이 길이, 나는 몇 번째인지 아세요?"</div>`,
+    choices: [
+      { label: "\"…몇 번째입니까?\"", goto: "isnaye_inn_reveal" },
+      { label: "\"묻지 않겠습니다. 지금 여기 있으니까.\"", goto: "isnaye_inn_present" }
+    ]
+  },
+
+  isnaye_inn_reveal: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 여행자 숙소",
+    text: `<p>유리카는 그것이 농담이었다는 듯 웃었다. 그러나 눈은 웃지 않았다.</p>
+    <div class="dialogue">"기억나는 건 세 번째예요. 그 전에도 있었을 수 있는데, 나도 확실치 않아요. 나는 사람의 수명을 살지 않거든요. 당신과 같은 이름을 가진 사람, 당신과 같은 얼굴을 가진 사람, 당신과 같은 목걸이를 가진 사람을 세 번 알았어요. 그 셋 모두 길 끝에서 멈췄고, 다시 다음 사람이 걷게 된 거예요."</div>
+    <p>그녀는 무릎 위에 턱을 얹었다. 은빛 머리카락이 얼굴을 반쯤 가렸다.</p>
+    <div class="dialogue">"그래서 나는 당신이 너무 일찍 '사랑' 같은 말을 꺼내지 않기를 바라요. 그 말은 길 끝에서 하는 게 좋아요."</div>`,
+    effects: { flag: { knows_yurica_past: true } },
+    choices: [
+      { label: "\"…알겠습니다. 내일 일찍 떠납시다.\"", goto: "isnaye_depart_night" }
+    ]
+  },
+
+  isnaye_inn_present: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 여행자 숙소",
+    text: `<p>유리카는 한참을 조용했다. 그러다 창틀에 얼굴을 대고 작게 웃었다.</p>
+    <div class="dialogue">"좋은 대답이에요. 오늘 제일 좋은 대답이었어요."</div>
+    <p>그녀는 무릎을 풀고 일어나 당신의 침대 끝에 걸터앉았다. 그녀의 손은 닿지 않았지만, 그 거리가 다정했다.</p>
+    <div class="dialogue">"내일 일찍 떠나요. 점성술사의 지도는 저도 대강 알아요. 켈라드리안 숲의 신단은 밤이 깊어지기 전에 도착해야 해요."</div>
+    <p>등잔이 꺼지기 전, 유리카의 은빛 머리가 당신 쪽으로 한 번 기울었다가, 다시 돌아갔다. 당신은 그 기울임의 의미를 평생 기억하게 될 것이었다.</p>`,
+    effects: { flag: { yurica_approves: true, shared_quiet_night: true }, stat: { hp: 1, mp: 1 } },
+    choices: [
+      { label: "잠든다.", goto: "isnaye_depart_night" }
+    ]
+  },
+
+  isnaye_depart_night: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "이스나에 라 하드르 · 새벽 성문",
+    text: `<p>동이 트기 전, 성문은 다시 열렸다. 문지기는 보이지 않았다. 횃불 자리엔 <span class="whisper">은빛 사슬 한 조각</span>만 남아 있었다. 그것은 유리카의 것도, 당신 것도 아니었다.</p>
+    <p>두 사람은 말없이 그것을 집어 당신의 품 안에 넣었다. <span class="emph">못다 걸린 사슬.</span> 마르크 올빈이 자기 목에 걸었던 것과 같은 무명의 유물.</p>
+    <p>켈라드리안 숲의 안쪽으로, 점성술사의 지도는 당신을 이끌었다. 자작나무는 이전보다 키가 컸고, 숲의 공기는 이전보다 한 겹 어두웠다.</p>`,
+    effects: { item: "못다 걸린 사슬", stat: { mp: 1 } },
+    choices: [
+      { label: "숲의 옛길을 따라 깊이 들어간다.", goto: "keladrian_inner" }
+    ]
+  },
+
+  keladrian_inner: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "켈라드리안 숲 · 안쪽 옛길",
+    text: `<p>숲 안쪽의 길은 눈이 덜 쌓여 있었다. 자작나무 대신 더 오래된 활엽수가 드문드문 섰고, 그 사이로 이끼 낀 돌들이 반쯤 묻혀 있었다. 유리카는 그 돌들을 보더니 조용해졌다.</p>
+    <div class="dialogue whisper">"이건 아주 오래된 길이에요. 지금 걷는 사람은 거의 없어요. 그러니까 이 길에서 누군가를 마주친다면—조심해요."</div>
+    <p>그 말이 끝나기도 전에, 당신은 멀리서 <span class="emph">어머니의 목소리</span>를 들었다. 분명했다. 어머니가 당신의 이름을 부르고 있었다. "파비안—" 목소리는 점점 가까워지는 것 같았고, 점점 슬퍼지는 것 같았다.</p>
+    <p>유리카는 당신의 손목을 잡았다. 단호하게.</p>
+    <div class="dialogue">"돌아보지 마세요. 점성술사가 말했잖아요. 당신의 어머니는 이 숲에 있을 리가 없어요."</div>`,
+    effects: { flag: { heard_voice_trap: true } },
+    choices: [
+      { label: "유리카의 손을 잡고 앞으로 걷는다.", goto: "keladrian_hold_forward" },
+      { label: "\"잠깐만… 목소리가 너무 닮았어요.\" 한 번 뒤돌아본다.", goto: "keladrian_look_back" },
+      { label: "목걸이를 꽉 쥐고 목소리를 차단한다.", goto: "keladrian_shield" }
+    ]
+  },
+
+  keladrian_hold_forward: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "켈라드리안 숲 · 안쪽 옛길",
+    text: `<p>당신은 눈을 앞에만 고정한 채 걸었다. 목소리는 한참을 당신의 뒷목을 쫓아왔다. 어머니의 목소리에 이어, 한 번도 들어본 적 없는 <span class="whisper">어떤 남자의 목소리</span>가 섞였다. "아들아—" 그 단어가 당신의 가슴을 얼마나 세게 쳤는지. 그것은 당신이 평생 듣지 못했던 아버지의 목소리였다. 들어본 적 없는데도, 당신은 그게 그 사람이라는 걸 알았다.</p>
+    <p>그러나 당신은 뒤돌아보지 않았다. 유리카의 손이 당신의 손목을 놓지 않았기 때문에.</p>
+    <p>한참 지나 목소리가 멀어졌을 때, 당신은 자신이 <span class="emph">소리 없이 울고 있었다는 사실</span>을 깨달았다. 유리카는 보지 못한 척해 주었다.</p>`,
+    effects: { flag: { endured_voice_trap: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "계속 걷는다.", goto: "keladrian_shrine" }
+    ]
+  },
+
+  keladrian_look_back: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "켈라드리안 숲 · 안쪽 옛길",
+    text: `<p>당신은 고개를 돌렸다. 한순간이었다.</p>
+    <p>어머니가 거기 있었다. 아니, <span class="emph">어머니의 얼굴을 한 무언가</span>가. 그것은 당신에게 손을 뻗고 있었다. 그 손가락이 당신의 이마에 닿았다. 닿는 순간, 당신의 발이 길을 잊었다. 당신은 숲 전체가 빙그르 도는 감각을 느꼈다.</p>
+    <p>유리카의 비명이 멀리서 들렸다. 그녀가 당신을 흔들고, 당신의 뺨을 때리고, 당신의 이름을 소리치는 소리가 여러 겹으로 겹쳐 들렸다. 당신이 다시 눈을 떴을 때, 당신은 풀 위에 누워 있었고 목걸이의 첫 보석이 <span class="emph">한 차례 희미해져 있었다</span>.</p>
+    <p>한 조각의 힘이 빠져나갔다. 영영 돌아오지 않을 조각이었다.</p>`,
+    effects: { flag: { touched_by_voice: true }, stat: { hp: -2, mp: -1 } },
+    choices: [
+      { label: "일어나 유리카의 부축을 받으며 걷는다.", goto: "keladrian_shrine" }
+    ]
+  },
+
+  keladrian_shield: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "켈라드리안 숲 · 안쪽 옛길",
+    text: `<p>당신은 목걸이를 두 손으로 감싸고, 심장에 바짝 붙였다. 푸른 사파이어가 짧게 한 번 번쩍였다.</p>
+    <p>어머니의 목소리가 갑자기 <span class="emph">가짜처럼 들리기 시작했다</span>. 발음 하나가 어머니의 것이 아니었다. 톤이 살짝 높았다. 그 단 하나의 어긋남을 목걸이가 당신에게 비춰준 것이었다.</p>
+    <p>뒤에서 무언가가—그것은 사람이 아니라 어둠 한 덩이였다—당신의 뒷목 공기에 스쳤고, 목걸이의 빛에 몇 걸음 물러섰다. 유리카가 환희에 가까운 목소리로 말했다.</p>
+    <div class="dialogue">"당신, 사파이어를 <span class="emph">방패로 쓸 줄 안다</span>! 이건 당신이 배워서 된 게 아니에요. 당신이 이미 가지고 있는 거예요."</div>`,
+    effects: { flag: { unlocked_sapphire_shield: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "목걸이를 품에 넣고 걸음을 잇는다.", goto: "keladrian_shrine" }
+    ]
+  },
+
+  keladrian_shrine: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "켈라드리안 숲 · 고대 신단",
+    text: `<p>길의 끝에는 작은 신단이 있었다. 자작나무가 둥글게 둘러섰고, 한가운데에 허리 높이의 돌이 놓여 있었다. 돌 위에는 오래된 글자가 새겨져 있었는데, 그 중 한 자가 비어 있었다. 구멍처럼.</p>
+    <p>유리카가 속삭였다.</p>
+    <div class="dialogue whisper">"두 번째 보석의 이름이 들어갈 자리예요. 당신이 그 이름을 아직 알 필요는 없어요. 다만 이 돌에 손을 얹으면, 그 이름이 당신 안에 씨앗처럼 들어올 거예요. 때가 되면 피어나고요."</div>
+    <p>당신은 돌 위에 손바닥을 올렸다. 차가운 것이 당신의 손금 사이로 스며들더니, 손목을 타고, 심장 근처에서 멈추었다. 그곳에서 <span class="emph">봄의 첫 싹 같은 따뜻함</span>이 맴돌았다.</p>
+    <p>이제 사계절의 목걸이에는 두 개의 보석이 깨어나 있었다. 아직 눈에 보이지는 않지만, 당신 안에서 이미.</p>`,
+    effects: { flag: { seeded_second_season: true, visited_shrine: true }, stat: { mp: 3 } },
+    choices: [
+      { label: "신단을 떠나 숲의 북쪽 끝을 향한다.", goto: "keladrian_omen" }
+    ]
+  },
+
+  keladrian_omen: {
+    chapter: "제2장 · 음유시인 아룬드",
+    loc: "켈라드리안 숲 · 북쪽 경계",
+    text: `<p>숲의 북쪽 경계에 이르자 자작나무가 갑자기 끊겼다. 그 너머는 검은 돌밭이었다. 아침인데도 그쪽 하늘은 <span class="emph">새까만 구름 한 덩어리</span>가 낮게 깔려 있었다. 해가 뜨는데 그쪽만 밤이었다.</p>
+    <p>유리카의 얼굴이 굳어졌다.</p>
+    <div class="dialogue">"이게 <span class="emph">암흑 아룬드</span>예요. 원래 제2월은 이렇게까지 오지 않아요. 누군가가 그것을 앞당겨 부른 거예요."</div>
+    <p>검은 돌밭 저편, 돌 위에 사람 같은 형체 셋이 서 있었다. 가까이 가기 전에는 사람인지 알 수 없었다. 다만 그들의 발이 <span class="whisper">바닥에 닿지 않은 채 살짝 떠 있었다</span>.</p>
+    <p>악령의 노예들이었다. 그들이 당신을 기다리고 있었다.</p>`,
+    effects: { flag: { ch2_done: true, saw_dark_servants: true } },
+    choices: [
+      { label: "유리카와 함께 돌밭으로 내려선다.", goto: "ch3_entry" }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // 제3장 · 암흑 아룬드 — 악령의 노예들, 고대 거인, 은둔 검사
+  // ══════════════════════════════════════════════════════════════
+
+  ch3_entry: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭 · 암흑 아룬드의 경계",
+    text: `<p>돌밭에 내려선 순간, 공기의 무게가 달라졌다. 같은 바람인데 숲에서보다 10배는 무거웠다. 유리카는 당신의 반 보 앞으로 섰다. 처음으로 그녀가 앞서 걸었다.</p>
+    <p>가까이 가자 셋의 형체가 보였다. 옛날에는 사람이었을 것이다. 그러나 지금은 <span class="emph">기억이 반쯤 지워진 얼굴</span>을 가진 무엇이었다. 가운데 서 있는 자가 입을 열었다. 입술은 움직였지만 소리는 다른 방향에서 났다.</p>
+    <div class="dialogue">"목걸이를 내려놓아라. 그러면 너는 네 어머니의 가게로 돌아갈 수 있다. 아무 일도 없었던 것처럼."</div>
+    <p>달콤한 제안이었다. 너무 달콤해서 슬픈 제안이었다.</p>`,
+    choices: [
+      { label: "\"싫습니다.\" 목걸이에 손을 얹고 정면으로 맞선다.", goto: "ch3_refuse_direct" },
+      { label: "\"내려놓으면 뭐가 달라집니까? 솔직히 말해 주세요.\"", goto: "ch3_question_them" },
+      { label: "유리카를 한 걸음 뒤로 밀어내고 앞으로 나선다.", goto: "ch3_protect_yurica" },
+      { label: "\"저를 어머니께 보내실 거면, 당신들이 누구를 대신 보낼 건지부터.\"", goto: "ch3_bargain_sharp" }
+    ]
+  },
+
+  ch3_refuse_direct: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>당신의 거절은 짧았다. 그것으로 충분했다. 가운데 형체가 미끄러지듯 앞으로 나왔다. 두 번째 보석의 씨앗이 당신 심장에서 <span class="emph">따뜻함</span>을 뿜었다. 그 따뜻함이 유리카에게도 번졌다.</p>
+    <p>유리카의 은빛 머리카락이 바람 없이 들려 올라갔다. 그녀의 눈이 잠시 별빛처럼 빛났다. 그녀는 오른손을 들어 자신의 은빛 머리카락 한 가닥을 뽑았다. 그 머리카락이 <span class="emph">작은 검의 형태</span>로 굳어졌다.</p>
+    <div class="dialogue">"한 번은 도와드릴게요. 나머지는 당신이 직접 답해야 해요."</div>
+    <p>그녀는 한 번의 베기로 가운데 형체를 가르고, 좌우의 둘이 흩어지게 만들었다. 그러나 형체 셋은 연기처럼 다시 모였다. 완전히 벨 수 있는 존재가 아니었다.</p>`,
+    effects: { flag: { yurica_one_help: true, ch3_fight_begun: true }, stat: { mp: -1 } },
+    choices: [
+      { label: "남은 둘을 당신이 맡는다.", goto: "ch3_stand_alone" }
+    ]
+  },
+
+  ch3_question_them: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>가운데 형체가 잠시 흔들렸다. 질문을 받은 것이 의외인 듯했다.</p>
+    <div class="dialogue">"달라지는 것은… 네가 다음 보석을 깨우지 않게 된다는 것. 그리하여 우리의 주인이 잠든 채로 한 아룬드를 더 벌 수 있다는 것. 그뿐이다. 네가 그 대가로 받는 것은 어머니의 가게, 평범한 나날, 그리고 이 모든 것을 <span class="emph">꿈이었다고 믿을 수 있는 자유</span>이다."</div>
+    <p>그들의 말은 솔직했다. 거짓보다 더 위험한 종류의 솔직함이었다.</p>`,
+    effects: { flag: { heard_tempter_truth: true }, stat: { mp: 1 } },
+    choices: [
+      { label: "\"…그래도, 싫습니다.\"", goto: "ch3_refuse_after_knowing" },
+      { label: "\"잠깐 생각할 시간을.\" 망설인다.", goto: "ch3_hesitate" }
+    ]
+  },
+
+  ch3_protect_yurica: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>당신은 유리카를 뒤로 밀었다. 그 행동에 그녀는 놀란 표정을 지었다. 한 번도 당신에게 보호받을 것이라 상상하지 않은 얼굴이었다.</p>
+    <p>그 순간, 두 번째 보석의 씨앗이 당신 심장에서 <span class="emph">터져 올랐다</span>. 도서관의 고서가 말한 그대로—두 번째 보석은 '길 위에서 사귄 자를 지키는 힘'을 주었다. 그 힘이 당신의 오른팔을 타고 올라와, 당신의 주먹을 녹색 빛으로 물들였다.</p>
+    <p>당신이 내민 주먹 앞에서 세 형체가 비명을 질렀다. 그들의 형상 절반이 흩어졌다.</p>
+    <div class="dialogue">"당신… 두 번째를 이렇게 빨리 깨웠다고요?"</div>
+    <p>유리카의 목소리는 놀람과 걱정이 반반이었다. <span class="whisper">너무 이르다는 것이다.</span> 두 번째 보석은 원래 더 오래 씨앗으로 있어야 했다.</p>`,
+    effects: { flag: { awoke_second_early: true, protected_yurica: true }, stat: { mp: -2 } },
+    choices: [
+      { label: "\"…괜찮아요. 끝냅시다.\"", goto: "ch3_stand_alone" }
+    ]
+  },
+
+  ch3_bargain_sharp: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>가운데 형체가 이번엔 웃었다. 소리가 웃음 같지는 않았지만, 형태가 그랬다.</p>
+    <div class="dialogue">"날카로운 질문이다. 대답은—아무도 대신 보내지 않는다. 너의 자리는 네가 비우면 그저 빈 채로 남는다. 목걸이는 다시 다른 시대를 기다린다. 그동안 세계는 평화롭다. 너 한 사람의 이야기가 사라지는 대신, 수많은 사람이 조용히 자기 어머니의 가게에서 저녁을 먹는다."</div>
+    <p>그것은 대의를 들먹이는 유혹이었다. 그러나 동시에, 그 대의가 진심인 것도 알 수 있었다.</p>
+    <p>당신의 가슴이 한동안 답답했다. 유리카는 당신의 결정을 기다렸다. 그녀는 이번엔 재촉하지 않았다.</p>`,
+    effects: { flag: { faced_great_tempt: true } },
+    choices: [
+      { label: "\"그래도 제가 걷겠습니다. 그건 제 선택입니다.\"", goto: "ch3_refuse_after_knowing" },
+      { label: "\"…정말 그래도 괜찮을까요, 유리카?\" 그녀에게 묻는다.", goto: "ch3_ask_yurica" }
+    ]
+  },
+
+  ch3_ask_yurica: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>유리카는 한동안 당신의 눈을 보았다. 그녀는 답을 가르쳐 주지 않았다.</p>
+    <div class="dialogue">"내가 답하면, 그건 당신의 답이 아니게 돼요. 이 질문만큼은 당신이 자신에게 해야 해요."</div>
+    <p>그녀의 목소리는 엄격했다. 그러나 그 엄격함이 오히려 당신을 도왔다. 당신은 자신의 답을 찾기 위해 자신의 심장에 물어봤다. 심장이 답을 했다. 그것은 말로 되지 않는 답이었지만, 당신은 그 답을 알아들었다.</p>`,
+    effects: { flag: { yurica_refused_easy_answer: true }, stat: { mp: 1 } },
+    choices: [
+      { label: "\"저는 걷겠습니다.\"", goto: "ch3_refuse_after_knowing" }
+    ]
+  },
+
+  ch3_hesitate: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>당신은 말을 골라내지 못했다. 그 몇 초의 망설임이, 형체들에게는 충분했다. 그들이 다시 미끄러져 다가왔고, 목걸이의 첫 보석이 방패가 되기에는 당신의 정신이 너무 흩어져 있었다.</p>
+    <p>유리카가 당신을 옆으로 쳐냈다. 그녀 자신의 어깨에 한 형체가 먼저 닿았다. 그녀의 은빛 머리카락 끝이 <span class="emph">잠깐 회색으로 물들었다</span>. 영원히 그녀의 것이 아니게 된 빛이었다.</p>
+    <div class="dialogue">"나는 괜찮아요. 이번엔 제가 대신. 다음부터는 망설이지 마세요."</div>`,
+    effects: { flag: { hesitated_cost: true, yurica_paid_a_price: true }, stat: { hp: -2, mp: -1 } },
+    choices: [
+      { label: "\"미안해요.\" 이를 악물고 앞으로 나선다.", goto: "ch3_stand_alone" }
+    ]
+  },
+
+  ch3_refuse_after_knowing: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>당신은 두 번, 세 번 숨을 길게 내쉬었다. 그리고 말했다.</p>
+    <div class="dialogue">"알고도 걷겠습니다. 당신들이 제 이야기를 사라지게 해주겠다는 제안은 감사합니다. 그러나 저는 이미 <span class="emph">이 이야기의 한복판에 서 있는 사람</span>입니다. 사라지는 것은 이제, 되돌릴 수 있는 일이 아닙니다."</div>
+    <p>형체들은 한순간 멈칫했다. 그들은 오랜 세월 동안 수많은 거절을 들었지만, 이런 종류의 거절은 흔치 않았다. <span class="emph">대가를 다 알고 거절하는 자</span>는 드물었다. 그들에게는 그런 거절이 가장 껄끄러웠다.</p>`,
+    effects: { flag: { refused_knowingly: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "싸움에 들어간다.", goto: "ch3_stand_alone" }
+    ]
+  },
+
+  ch3_stand_alone: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>형체 둘이 양쪽에서 밀려왔다. 당신은 목걸이의 첫 보석—푸른 사파이어의 방패를 본능적으로 자신 앞에 세웠다. 왼쪽 형체가 방패에 부딪혀 흩어졌다.</p>
+    <p>오른쪽에서 온 형체는 당신의 어깨를 스쳤다. 스친 자리가 얼음처럼 아렸다. 그러나 당신은 이를 악물고 오른주먹에 두 번째 보석의 녹색 빛을 모았다. 한 번의 주먹이 형체의 가운데를 관통했다.</p>
+    <p>남은 하나—가운데의 형체가 뒤로 물러섰다. 그것은 사라지기 전에 <span class="emph">마지막 한 마디</span>를 남겼다.</p>
+    <div class="dialogue">"고대 거인이 깨어날 것이다. 너희가 신단을 두드렸으니. 그리고 그를 깨운 책임은—네가 지어야 한다."</div>`,
+    effects: { flag: { ch3_first_fight_done: true, ancient_giant_awakened: true }, stat: { hp: -1, mp: -2 } },
+    choices: [
+      { label: "형체가 사라진 자리를 바라본다.", goto: "ch3_giant_rumble" }
+    ]
+  },
+
+  ch3_giant_rumble: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "검은 돌밭",
+    text: `<p>돌밭이 울렸다. 한 번, 두 번, 세 번. 멀리서 산이 움직이는 소리였다.</p>
+    <p>유리카의 얼굴이 창백해졌다.</p>
+    <div class="dialogue">"고대 거인… 정말 깨어나는구나. 우리가 선택할 수 있는 건 두 개뿐이에요. 하나는 <span class="emph">그를 피해 동쪽 협곡으로 돌아가는 길</span>. 다른 하나는 <span class="emph">그와 정면으로 만나는 길</span>. 만나는 길에는 <span class="emph">은둔 검사</span>가 있다는 전설이 있어요. 만약 그 전설이 사실이라면, 그 사람의 도움 없이는 거인을 이길 수 없어요."</div>`,
+    choices: [
+      { label: "동쪽 협곡으로 돌아간다.", goto: "ch3_canyon_east" },
+      { label: "거인을 향한다. 은둔 검사를 찾는다.", goto: "ch3_toward_giant" }
+    ]
+  },
+
+  ch3_canyon_east: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "동쪽 협곡 · 얼음비",
+    text: `<p>동쪽 협곡의 길은 멀었다. 얼음이 비처럼 내렸고, 당신과 유리카는 추위를 줄여 주기 위해 나란히 바짝 붙어 걸었다.</p>
+    <p>하루 반을 걸은 뒤, 협곡 끝에서 <span class="emph">작은 마을</span>이 나타났다. 그러나 그 마을은 비어 있었다. 굴뚝에는 연기가 없었고, 마당에는 빨래가 그대로 얼어 있었다. 사람들은 며칠 전에 사라졌다.</p>
+    <p>유리카는 한 집의 마당에 떨어진 <span class="emph">아이의 나무 인형</span>을 집어 들었다. 인형의 얼굴이 살짝 검게 그을려 있었다.</p>
+    <div class="dialogue whisper">"여기도… 악령의 노예들이 지나갔어요. 마을 사람들은 목걸이의 주인이 아니니까, 그저 '지나가는 길에' 지워진 거예요."</div>
+    <p>당신의 가슴이 한동안 먹먹했다. 당신이 걷고 있는 이 길은, <span class="emph">당신만의 이야기가 아니라는 사실</span>이 무겁게 내려앉았다.</p>`,
+    effects: { flag: { saw_erased_village: true }, stat: { mp: -1 } },
+    choices: [
+      { label: "마을 광장에 조용히 인형을 세워두고, 거인의 방향으로 걸음을 돌린다.", goto: "ch3_toward_giant" }
+    ]
+  },
+
+  ch3_toward_giant: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "고대 거인의 산 · 기슭",
+    text: `<p>거인의 산은 멀리서 보면 한 덩이의 회색 바위였지만, 가까이 가자 그것이 <span class="emph">쭈그려 앉은 사람의 형상</span>임을 알 수 있었다. 어깨 능선, 무릎 능선, 감긴 눈. 그는 긴 잠에서 막 깨어나는 참이었다.</p>
+    <p>산기슭에는 낡은 오두막 하나가 있었다. 문 앞에는 장작을 패다 만 사내가 서 있었다. 머리는 희끗했고, 어깨에는 검이 아니라 <span class="emph">도끼</span>가 걸려 있었다. 그러나 그의 자세는 분명히 검사의 자세였다.</p>
+    <div class="dialogue">"목걸이를 걸치고 내 땅에 온 자가 몇 세기 만이군. 자, 들어오게. 그를 깨운 대가를 같이 치러야 할 테니."</div>
+    <p>그는 당신에게 차를 내주고, 자신을 <span class="emph">라고르</span>라 소개했다. 한때 이 나라의 검술 스승이었고, 지금은 거인의 잠을 지키는 자라 했다.</p>`,
+    effects: { flag: { met_lagor: true }, companion: "라고르" },
+    choices: [
+      { label: "\"거인을 잠재울 방법이 있습니까?\"", goto: "ch3_lagor_plan" },
+      { label: "\"왜 당신은 지금까지 숨어 계셨습니까?\"", goto: "ch3_lagor_why_hidden" }
+    ]
+  },
+
+  ch3_lagor_plan: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "라고르의 오두막",
+    text: `<p>라고르는 난로에 장작을 한 덩이 더 밀어 넣었다.</p>
+    <div class="dialogue">"잠재우는 방법은 없다. 그는 한 번 깨면 자기 일을 다 하고야 다시 눕는다. 우리가 할 수 있는 건 그가 일을 '어떻게' 하게 만드느냐다. 그에게 <span class="emph">부술 대상</span>을 주면 그것만 부수고 다시 잔다. 대상을 주지 못하면—그는 자기가 맞닥뜨린 것을 모두 부순다. 우리가 대상이 될 수도 있고."</div>
+    <p>그는 탁자 위에 낡은 지도를 펼쳤다. 악령의 노예들의 본거지가 표시되어 있었다.</p>
+    <div class="dialogue">"그를 저쪽으로 돌려야 한다. 그러려면 그의 주의를 끌 사람이 필요해. 그건 내가 한다. 자네는 유리카와 함께 북쪽으로 빠져 이 산을 가로질러라. 나는 <span class="emph">자네를 대신해서 거인의 눈길이 될 것</span>이다."</div>
+    <p>유리카의 얼굴이 잠시 어두워졌다. 그 어둠의 의미를 당신은 한 박자 늦게 알아챘다. 라고르는 돌아오지 않을 계획을 말하고 있었던 것이다.</p>`,
+    effects: { flag: { lagor_sacrifice_plan: true } },
+    choices: [
+      { label: "\"…그 방법은 싫습니다. 같이 가는 방법을 찾겠습니다.\"", goto: "ch3_refuse_sacrifice" },
+      { label: "\"…감사합니다.\" 고개를 숙인다.", goto: "ch3_accept_sacrifice" }
+    ]
+  },
+
+  ch3_lagor_why_hidden: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "라고르의 오두막",
+    text: `<p>라고르는 차를 한 모금 마시고, 오래 말을 고르지 않았다.</p>
+    <div class="dialogue">"내가 젊었을 때, 나는 목걸이의 주인이었던 분의 동행이었다. 그분이 길 끝에서 돌아오지 않았을 때, 나는 그분의 마지막을 <span class="emph">눈앞에서 지키지 못한 자</span>로 남았다. 검사가 자기 사람을 잃으면, 그 검은 그 자리에 꽂혀 한동안 일어나지 않는다."</div>
+    <p>그는 자신의 도끼 자루를 한 번 쓰다듬었다.</p>
+    <div class="dialogue">"검을 도끼로 바꾼 건, 나무를 패며 그 자리를 오래 지키기 위해서였다. 그리고 자네가 올 것을 기다렸다. 자네에게 같은 끝을 주지 않기 위해서."</div>
+    <p>당신의 가슴이 이상한 무게로 눌렸다. 이 사람은 <span class="emph">당신을 처음 본 순간부터, 당신을 지키겠다고 결심한 사람</span>이었다.</p>`,
+    effects: { flag: { lagor_loyalty_known: true } },
+    choices: [
+      { label: "\"계획이 있으십니까?\"", goto: "ch3_lagor_plan" }
+    ]
+  },
+
+  ch3_refuse_sacrifice: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "라고르의 오두막",
+    text: `<p>라고르는 당신을 한참 응시했다. 그러다 느리게 웃었다. 그 웃음에는 오래된 슬픔과 오래된 기쁨이 같이 있었다.</p>
+    <div class="dialogue">"그렇게 말할 줄 알았다. 내 사람도 예전에 꼭 그랬다. '같이 간다'는 말을 버리지 못하는 사람이었지."</div>
+    <p>그는 탁자 위의 지도를 다시 접었다.</p>
+    <div class="dialogue">"좋다. 그러면 함께 가자. 단, 내 말 하나만 약속해라. 만약 마지막에 한 명을 남겨야 할 상황이 오면, 그 한 명은 <span class="emph">자네가 아니다</span>. 자네는 걸어야 한다. 이 숙명의 남은 세 보석을 위해서."</div>
+    <p>당신은 고개를 끄덕였다. 그 약속의 무게가, 일생 당신을 따라다닐 무게였다.</p>`,
+    effects: { flag: { lagor_joins: true, promised_to_walk: true } },
+    choices: [
+      { label: "\"…약속하겠습니다.\"", goto: "ch3_giant_climb" }
+    ]
+  },
+
+  ch3_accept_sacrifice: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "라고르의 오두막",
+    text: `<p>당신은 그의 희생을 받아들였다. 쉬운 결정은 아니었다. 그러나 라고르는 오래된 눈으로 당신을 보며, 잠시 안도하는 듯했다.</p>
+    <div class="dialogue">"감사하다. 자네가 거절했다면, 나는 이 산에서 또 십 년을 더 기다려야 했을 것이다. 내 계절은 이미 너무 많이 지났다. 이제 내 계절을 쓸 곳이 생긴 것이, 나에게는 축복이다."</div>
+    <p>유리카는 아무 말이 없었다. 그녀의 눈 가장자리에 별 하나가 반짝였다. 그것은 눈물이 아니라 <span class="emph">그녀의 눈에 비친 외로움 자체</span>였다.</p>`,
+    effects: { flag: { lagor_sacrifice_accepted: true }, stat: { mp: -1 } },
+    choices: [
+      { label: "산을 오르기 시작한다.", goto: "ch3_giant_climb" }
+    ]
+  },
+
+  ch3_giant_climb: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "고대 거인의 산 · 중턱",
+    text: `<p>거인의 산 중턱에 이르렀을 때, 거인의 눈이 천천히 떠졌다. 눈꺼풀이 <span class="emph">한 산맥만큼의 무게</span>로 열렸다. 그 눈동자는 깊은 녹색이었다. 녹색 숲 전체를 담고 있었다.</p>
+    <p>거인은 말했다. 그의 말은 소리가 아니라 <span class="emph">땅을 통한 진동</span>이었다.</p>
+    <div class="dialogue">"작은 자여. 너는 왜 내 잠을 깨웠느냐."</div>
+    <p>라고르가 당신보다 한 발 앞으로 나섰다. 도끼를 단단히 쥔 채.</p>`,
+    effects: { flag: { faced_giant: true } },
+    choices: [
+      { label: "\"당신을 깨우고자 깨운 것이 아닙니다. 저는 잘못한 것이 있습니다.\" (솔직)", goto: "ch3_giant_honest" },
+      { label: "\"당신의 잠을 방해한 것은 악령의 노예들입니다. 그들을 향해 주십시오.\" (돌리기)", goto: "ch3_giant_redirect" },
+      { label: "라고르에게 시선을 넘긴다. 그가 말하도록 둔다.", goto: "ch3_giant_lagor_speaks" }
+    ]
+  },
+
+  ch3_giant_honest: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "고대 거인의 산 · 정상",
+    text: `<p>거인은 당신의 솔직함에 잠시 멈췄다. 솔직함은 그가 수천 년 듣지 못한 언어였다.</p>
+    <div class="dialogue">"너는 신단을 두드렸다. 그것이 나의 베개였다. 네가 그 사실을 아는구나."</div>
+    <p>당신은 고개를 숙였다.</p>
+    <div class="dialogue">"죄송합니다. 두드리지 않을 수 없었습니다. 그러나 당신의 잠을 다시 재울 수 있는 방법이 있다면, 저는 그것을 위해 어떤 일도 하겠습니다."</div>
+    <p>거인은 천천히 고개를 끄덕였다. 산 전체가 같이 움직였다.</p>
+    <div class="dialogue">"그렇다면 저쪽, 내 베개를 두드리게 만든 자들을 가져오너라. 그들을 내 앞에 놓으면, 나는 그들을 부수고 다시 눕겠다. 그때까지 너는 살아야 한다."</div>
+    <p>당신은 거인의 과제를 받아 안았다. 무거웠지만, 적어도 <span class="emph">방향이 있는 무게</span>였다.</p>`,
+    effects: { flag: { giant_truce_honest: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "산을 내려와 악령의 본거지를 향한다.", goto: "ch3_to_servant_lair" }
+    ]
+  },
+
+  ch3_giant_redirect: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "고대 거인의 산 · 정상",
+    text: `<p>거인은 당신의 말에 천천히 고개를 돌렸다. 그러나 그는 바보가 아니었다.</p>
+    <div class="dialogue">"네 말은 맞는다. 그러나 너 또한 내 잠을 함께 깨운 자이다. 책임을 남에게 넘기는 자는 내 앞에서 <span class="emph">작은 자가 된다</span>."</div>
+    <p>그는 당신 쪽으로 한 손을 뻗었다. 그 손의 그림자가 산기슭까지 덮었다. 라고르가 순간 당신을 뒤로 밀어냈다. 도끼를 든 채, 라고르는 거인의 손가락 끝에 자기 몸을 올려놓았다.</p>
+    <div class="dialogue">"위대한 자여. 이 아이는 아직 제 말의 무게를 모릅니다. 제가 그 무게를 대신 지겠습니다."</div>
+    <p>거인은 라고르를 한참 내려다봤다. 그의 녹색 눈동자가 한 박자 흔들렸다. 오래된 슬픔이었다.</p>`,
+    effects: { flag: { lagor_stepped_in: true }, stat: { hp: -1 } },
+    choices: [
+      { label: "라고르의 뒷목을 향해 손을 내민다. \"아니에요, 라고르!\"", goto: "ch3_giant_lagor_save" }
+    ]
+  },
+
+  ch3_giant_lagor_speaks: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "고대 거인의 산 · 정상",
+    text: `<p>라고르는 당신의 시선을 받고 앞으로 나섰다. 그의 목소리는 장작을 오래 팬 사람의 낮은 목소리였다.</p>
+    <div class="dialogue">"위대한 자여. 이 아이는 목걸이의 주인이다. 당신이 깨어난 이유는 이 아이가 신단을 두드려서가 아니라, 신단의 돌이 이 아이의 체온을 오래 기다려왔기 때문이다. 즉 당신이 깬 것은 <span class="emph">시간표대로</span>일 뿐이다. 책임은 아이가 아니라, 시간이 진다."</div>
+    <p>거인의 녹색 눈동자가 한 번 반짝였다. 그것은 인정의 반짝임이었다.</p>
+    <div class="dialogue">"늙은 검사여. 네가 아직 이런 말을 골라낼 줄 안다니. 좋다. 나는 너의 말을 받아들인다. 대신 너희는 나를 깨운 자들—악령의 노예들의 본거지로 나를 안내하거라. 내가 그들을 부수고 눕겠다."</div>`,
+    effects: { flag: { lagor_wise_words: true, giant_guided: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "산을 내려간다. 라고르가 앞서 걷는다.", goto: "ch3_to_servant_lair" }
+    ]
+  },
+
+  ch3_giant_lagor_save: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "고대 거인의 산 · 정상",
+    text: `<p>당신은 라고르를 잡아채려 했다. 그러나 그는 이미 거인의 손가락 위에 올라서 있었다.</p>
+    <div class="dialogue">"약속 기억하게, 소년. 자네는 걸어야 한다. 걷는 것이 자네가 나에게 갚는 방법이다."</div>
+    <p>거인은 라고르를 오래 내려다본 후, 손을 다시 거두었다. 그러나 라고르를 돌려놓지 않았다. 그는 라고르를 자기 어깨에 앉혔다.</p>
+    <div class="dialogue">"늙은 검사여. 네가 앞으로 내 길잡이가 되어라. 나는 네가 가리키는 곳을 부수고 다시 눕겠다."</div>
+    <p>라고르는 당신에게 마지막 미소를 보냈다. 그 미소는 영영 당신의 가슴에 남을 것이었다. <span class="emph">그는 돌아오지 않는 길을 떠났다.</span></p>`,
+    effects: { flag: { lagor_rode_giant: true, lagor_gone: true }, stat: { hp: -2, mp: 1 } },
+    choices: [
+      { label: "그의 뒷모습을 바라본 뒤, 유리카와 남쪽으로 걸음을 돌린다.", goto: "ch3_aftermath" }
+    ]
+  },
+
+  ch3_to_servant_lair: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "악령 본거지 · 검은 돌의 원",
+    text: `<p>악령의 본거지는 깊은 분지 안에 있었다. 거대한 검은 돌 7개가 원을 그리고 서 있었고, 그 가운데에서 <span class="emph">한 사람의 형체</span>가 떠 있었다. 그것은 악령의 노예들의 '주인'이었다. 정확히 말하면 주인의 반쪽.</p>
+    <p>거인이 한 걸음 뒤에서 걸어왔다. 산이 움직이는 소리였다. 본거지의 검은 돌들이 흔들렸다.</p>
+    <p>주인의 반쪽이 놀란 눈으로 거인을 올려다보았다. 그는 천 년 만에 처음으로 <span class="emph">두려움</span>을 느꼈다.</p>
+    <div class="dialogue">"거인이여! 네 베개는 아직 따뜻한데! 왜 깨어났는가!"</div>`,
+    choices: [
+      { label: "\"우리가 베개를 두드렸다. 대가를 치르는 중이다.\"", goto: "ch3_servant_confront" }
+    ]
+  },
+
+  ch3_servant_confront: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "악령 본거지 · 검은 돌의 원",
+    text: `<p>당신의 답에 주인의 반쪽은 목걸이 쪽으로 시선을 돌렸다. 그의 눈동자에는 <span class="emph">욕심과 피로</span>가 동시에 있었다.</p>
+    <div class="dialogue">"너희 아이 하나만 내놓아라. 거인을 다시 재워주마. 그 아이의 이야기만 사라지면, 세계는 조용해진다. 나쁜 거래가 아니다."</div>
+    <p>거인이 뒤에서 웃었다. 그 웃음은 <span class="emph">산이 움직이는 소리</span>였다.</p>
+    <div class="dialogue">"작은 악령아. 네가 내 베개를 두드린 당사자이면서, 그 대가를 남에게 떠넘기려 하는구나. 그 수작이 내게 먹힐 줄 알았느냐."</div>
+    <p>거인의 한 주먹이 본거지 한가운데로 내려왔다. 검은 돌 7개가 단번에 부서졌다. 주인의 반쪽은 비명 없이 흩어졌다. 그러나 완전히 소멸된 것은 아니었다. <span class="whisper">나머지 반쪽이 어딘가에 남아 있었다.</span></p>`,
+    effects: { flag: { ch3_lair_shattered: true, evil_half_remains: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "폐허에서 숨을 고른다.", goto: "ch3_aftermath" }
+    ]
+  },
+
+  ch3_aftermath: {
+    chapter: "제3장 · 암흑 아룬드",
+    loc: "본거지 폐허 · 새벽",
+    text: `<p>새벽이 왔다. 거인은 다시 산으로 돌아가 자리를 잡았다. 일이 끝난 것이다—그의 몫의 일이.</p>
+    <p>라고르가 남아 있다면, 그는 당신의 어깨 옆에 섰을 것이다. 그가 떠난 자리라면, 당신은 그의 도끼를 들고 오래 바라보고 있을 것이다. 어느 쪽이든, 당신 안에서 한 조각이 영영 자리를 잡았다.</p>
+    <p>유리카가 말했다.</p>
+    <div class="dialogue">"암흑 아룬드가 지나가고 있어요. 봄이 가까워요. 그러나 봄은 암흑이 지워놓은 <span class="emph">상처 자리 위에 먼저 피어요</span>. 그것이 <span class="emph">아르나 아룬드</span>의 진실이에요."</div>
+    <p>제3장이 닫혔다. 네 번째 보석의 씨앗이 당신 안에서 <span class="whisper">다음 계절의 리듬을 듣기 시작했다</span>.</p>`,
+    effects: { flag: { ch3_done: true } },
+    choices: [
+      { label: "북쪽 — 마브릴의 땅으로 향한다.", goto: "ch4_entry" }
+    ]
   }
 };
 
