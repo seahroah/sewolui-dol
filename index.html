@@ -2735,6 +2735,470 @@ const SCENES = {
     choices: [
       { label: "8장의 길로. 왕실의 장미를 향해.", goto: "ch8_entry" }
     ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // 제8장 · 약초 아룬드 — 왕국의 장미, 상처를 위한 상처
+  // ══════════════════════════════════════════════════════════════
+
+  ch8_entry: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "이스나미르 중부 · 장미 정원 수도원",
+    text: `<p>7장의 만가가 가슴에 남은 채, 당신과 유리카는 이스나미르 중부로 내려왔다. 이곳에는 왕실이 관리하는 <span class="emph">장미 정원 수도원</span>이 있었다. 왕자 칸세르가 어렸을 때 여름을 보냈던 곳이기도 했다. 왕은 당신에게 이곳에서 잠시 쉬고 가라 권했다.</p>
+    <p>수도원의 정문 앞에서, 늙은 수녀가 당신을 기다리고 있었다. 머리를 흰 천으로 덮었고, 허리에 약초 주머니가 여러 개 매여 있었다.</p>
+    <div class="dialogue">"파비안 님. 저는 <span class="emph">프리마</span> 수녀입니다. 이 수도원의 약초사입니다. 왕자님의 소식을 들었습니다. 이곳에서는 서두르지 마십시오. 약초 아룬드의 달은 <span class="emph">서두르지 않는 자만 치료합니다</span>."</div>
+    <p>유리카가 작게 말했다.</p>
+    <div class="dialogue whisper">"이 달이 지나야 다음 달의 길을 제대로 걸을 수 있어요. 8장은 <span class="emph">쉬는 장</span>이 아니라 <span class="emph">깊이 아파야 치유되는 장</span>이에요."</div>`,
+    effects: { flag: { arrived_rose_abbey: true, met_prima: true } },
+    choices: [
+      { label: "프리마 수녀를 따라 수도원 안으로.", goto: "ch8_first_night" }
+    ]
+  },
+
+  ch8_first_night: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "수도원 · 밤의 정원",
+    text: `<p>그날 밤, 정원의 장미꽃들은 달빛 아래에서 검은색으로 보였다. 프리마 수녀가 당신에게 차 한 잔을 주었다. 차에서 이상한 향이 났다. 씁쓸하지 않고, 달지도 않은, <span class="emph">기억의 향기</span>였다.</p>
+    <div class="dialogue">"이 차는 '돌이킬 수 없는 것을 떠올리는 차'입니다. 마시면 오늘 밤, 당신이 잊지 말아야 할 것이 꿈으로 옵니다. 마시지 않아도 됩니다—많은 사람은 오히려 마시지 않는 것이 낫지요. 제 경험으로는요."</div>
+    <p>당신은 차를 한동안 바라봤다. 마실지, 말지. 그 결정 자체가 이 장의 시작이었다.</p>`,
+    choices: [
+      { label: "차를 마신다.", goto: "ch8_drink_tea" },
+      { label: "차를 내려놓는다.", goto: "ch8_refuse_tea" },
+      { label: "\"수녀님 먼저 한 모금 보여주시겠어요?\" 먼저 묻는다.", goto: "ch8_tea_test" }
+    ]
+  },
+
+  ch8_tea_test: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "수도원 정원",
+    text: `<p>프리마는 웃었다. 그녀는 마치 그 말을 기다렸다는 듯이, 자기 잔을 들어 한 모금 마셨다. 한 박자 뒤, 그녀의 눈에 물기가 살짝 번졌다.</p>
+    <div class="dialogue">"제가 마시면 제 기억이 옵니다. 제 어린 조카가 열 살에 병으로 갔습니다. 그 아이의 마지막 웃음이 지금 제 입안에 맴돌고 있군요. 이 차의 맛은 <span class="emph">각자의 것</span>입니다. 당신이 마시면 당신의 것이 올 겁니다."</div>
+    <p>그녀의 솔직함이 당신에게 결심을 주었다.</p>`,
+    choices: [
+      { label: "같이 마신다.", goto: "ch8_drink_tea" },
+      { label: "아직 마시지 않는다.", goto: "ch8_refuse_tea" }
+    ]
+  },
+
+  ch8_drink_tea: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "수도원 · 밤의 방",
+    text: `<p>차를 삼킨 순간, 당신의 머릿속에 한 장면이 들어왔다. 그것은 기억이었지만, 기억이 아닌 것이기도 했다.</p>
+    <p>당신은 아주 어렸을 적, 어머니의 가게 뒷마당에서 혼자 놀고 있었다. 어머니가 뒷문으로 나와 당신을 부르려다, 문턱에서 멈췄다. 당신이 <span class="emph">허공에 대고 누군가와 이야기하고 있었기 때문이다</span>. 당신의 웃음소리가 두 사람의 웃음소리처럼 겹쳐져 있었다. 어머니는 그 장면을 한참을 바라보고, 뒷문을 조용히 닫았다.</p>
+    <p>어렸던 당신이 이야기하던 사람은 보이지 않았다. 그러나 지금 이 차를 통해 그 자리를 다시 보니, <span class="emph">보라빛 잎을 떨구던 나무 한 그루의 그림자</span>가 마당에 있었다. 아버지였다. 아버지는 나무의 형상으로 당신에게 한 번 와 있었던 것이다.</p>
+    <p>당신은 울었다. 한참을. 프리마는 방문을 닫고 조용히 복도에 서 있었다.</p>`,
+    effects: { flag: { saw_father_visit: true, deeper_grief: true }, stat: { mp: 2, hp: -1 } },
+    choices: [
+      { label: "한참 울고 난 뒤, 잠에 든다.", goto: "ch8_morning_healing" }
+    ]
+  },
+
+  ch8_refuse_tea: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "수도원 정원",
+    text: `<p>당신은 잔을 내려놓았다. 프리마는 고개를 끄덕였다.</p>
+    <div class="dialogue">"좋은 선택입니다. 어떤 기억은 지금 꺼내는 것이 아니라, 길 끝에서 꺼내는 것이 낫습니다. 당신의 오늘 밤은 그저 잠으로 채워질 겁니다. 그것만으로도 많은 치유가 있지요."</div>
+    <p>그녀는 당신을 방으로 안내했다. 방은 낮고 따뜻했다. 침대에 누우니 몸이 바닥으로 꺼지는 듯했다. 당신은 오래 잤다. 꿈을 꾸지 않는 깊은 잠이었다. 아주 오래간만의 깊은 잠이었다.</p>`,
+    effects: { flag: { rested_deep: true }, stat: { hp: 3, mp: 1 } },
+    choices: [
+      { label: "아침에 일어난다.", goto: "ch8_morning_healing" }
+    ]
+  },
+
+  ch8_morning_healing: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "수도원 정원 · 아침",
+    text: `<p>다음 날 아침, 프리마는 당신을 정원 안쪽 깊은 곳으로 이끌었다. 그곳에 <span class="emph">검은 장미 한 송이</span>가 피어 있었다. 수도원에 이 장미가 필 때마다, 한 여행자가 이 수도원에 도착한다고 프리마는 말했다.</p>
+    <div class="dialogue">"이 검은 장미는 <span class="emph">상처를 받아먹는 꽃</span>입니다. 당신의 가장 깊은 상처 하나를 이 꽃에 내어주세요. 꽃이 그 상처를 삼키고 대신 <span class="emph">치유의 가지 하나</span>를 드립니다. 대신—한 번 내어준 상처는 다시 당신의 것이 되지 않습니다. 기억도 함께 흐려집니다."</div>
+    <p>유리카는 당신을 지켜봤다. 그녀는 당신을 재촉하지 않았지만, 그녀의 눈에는 작은 걱정이 있었다. 이전 여정에서도 그녀는 이 장면을 봤던 사람의 표정이었다.</p>`,
+    choices: [
+      { label: "칸세르를 잃은 상처를 내어준다.", goto: "ch8_give_kanser_grief", hint: "kanser_died 때" },
+      { label: "아버지를 모른 채 살아온 상처를 내어준다.", goto: "ch8_give_father_wound" },
+      { label: "상처를 내어주지 않는다. 내 것으로 남긴다.", goto: "ch8_keep_wounds" }
+    ]
+  },
+
+  ch8_give_kanser_grief: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "검은 장미 앞",
+    text: `<p>당신은 무릎을 꿇고, 검은 장미의 꽃잎 한 장을 혀에 댔다. 꽃잎에 닿자, 당신의 가슴 속에서 <span class="emph">한 덩이의 무게</span>가 꺼내져 꽃으로 들어갔다.</p>
+    <p>칸세르의 마지막 웃음이 흐려졌다. 그의 이름은 기억하지만, 그를 떠올렸을 때 오는 뾰족한 아픔이 <span class="emph">부드러워졌다</span>. 그는 이제 당신에게 '좋은 사람이었던 왕자'로 남을 것이고, '내가 구하지 못한 친구'로는 남지 않을 것이다.</p>
+    <p>꽃이 한 장을 떨구었다. 그 떨어진 꽃잎은 작은 가지로 변했다. 프리마가 그 가지를 당신에게 건넸다.</p>
+    <div class="dialogue">"치유의 가지입니다. 한 번 쓰면 큰 상처 하나를 꿰맵니다. 마브릴의 가지가 이미 소모되었다면, 이것이 당신의 두 번째 보험이 될 겁니다."</div>`,
+    effects: { flag: { gave_kanser_grief: true, kanser_wound_soft: true }, item: "수도원 치유의 가지", stat: { mp: 2, hp: 1 } },
+    choices: [
+      { label: "가지를 받고 감사한다.", goto: "ch8_rest_days" }
+    ]
+  },
+
+  ch8_give_father_wound: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "검은 장미 앞",
+    text: `<p>당신은 아버지를 한 번도 직접 본 적 없는 상처를 떠올렸다. 그 상처는 당신이 자신을 돌아볼 때마다 <span class="emph">밑바닥에 놓여 있던 한 덩이의 돌</span>이었다.</p>
+    <p>꽃잎이 그 돌을 당신에게서 꺼냈다. 당신의 가슴이 이상하게 가벼워졌다. 너무 가벼워서 <span class="emph">한 번 비틀거렸다</span>. 아버지 없이 살아온 자의 자기 자세가, 당신 안에서 너무 오래 형성되어 있었던 것이다.</p>
+    <p>아버지의 보라빛 나무가 기억에서 완전히 사라진 것은 아니었다. 그러나 그 나무를 떠올리는 감정이 <span class="emph">'결핍'이 아니라 '평온'</span>으로 바뀌어 있었다. 이 바꿈이 좋은지 나쁜지는 당신이 오래 생각해야 할 일이었다.</p>
+    <p>꽃이 가지 하나를 당신에게 내어주었다.</p>`,
+    effects: { flag: { gave_father_wound: true, father_wound_healed: true }, item: "수도원 치유의 가지", stat: { mp: 3, hp: 2 } },
+    choices: [
+      { label: "가지를 받는다.", goto: "ch8_rest_days" }
+    ]
+  },
+
+  ch8_keep_wounds: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "검은 장미 앞",
+    text: `<p>당신은 꽃 앞에 오래 서 있다가, 천천히 뒤로 물러섰다.</p>
+    <div class="dialogue">"제 상처는 제 것입니다. 흐려지는 것이 오히려 무섭습니다. 상처를 달고 걷는 법을 배우겠습니다."</div>
+    <p>프리마는 고개를 끄덕였다.</p>
+    <div class="dialogue">"그것도 치유입니다. 상처를 없애는 것이 치유의 전부가 아닙니다. 상처와 함께 <span class="emph">걸을 수 있는 다리</span>를 얻는 것도 치유이지요. 당신은 다리를 얻으려고 여기 오신 겁니다."</div>
+    <p>그녀는 대신 당신의 손목에 작은 흰 실 한 가닥을 묶어주었다.</p>
+    <div class="dialogue">"이 실은 당신이 상처와 함께 걷고 있다는 표식입니다. 길 위에서 당신을 보는 이들은 이 실을 알아볼 겁니다. 그들이 당신을 돕게 될 거예요."</div>`,
+    effects: { flag: { kept_all_wounds: true }, item: "흰 실 팔찌", stat: { mp: 2, hp: 1 } },
+    choices: [
+      { label: "실을 쓰다듬고 수도원에서 며칠 더 머무른다.", goto: "ch8_rest_days" }
+    ]
+  },
+
+  ch8_rest_days: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "수도원 · 회복의 며칠",
+    text: `<p>며칠이 흘렀다. 당신은 수도원의 허드렛일을 도왔다. 약초를 말리고, 장미를 따고, 저녁 종을 쳤다. 유리카는 수도원 도서관에서 오래된 책을 뒤졌다. 그녀는 가끔 찾은 문장을 당신에게 읽어주었다.</p>
+    <p>어느 저녁, 유리카가 당신 옆에 앉으며 말했다.</p>
+    <div class="dialogue">"수도원의 어느 책에서 '파비안느'라는 이름을 봤어요. <span class="emph">2백 년 전 이스나미르 왕가의 실종된 공주</span>의 이름이래요. 그녀의 이름이 당신의 이름과 한 음절이 같아요. 다음 장에서—<span class="emph">9장 파비안느 아룬드</span>—에 이 공주의 흔적을 따라가게 될 거예요."</div>
+    <p>당신은 그 이름을 처음 듣는 순간, 가슴 한구석이 <span class="whisper">오래된 울림으로 떨렸다</span>. 본 적 없는 이름이지만, 당신 안의 어딘가가 그 이름을 이미 알고 있는 듯했다.</p>`,
+    effects: { flag: { heard_pabianne_hint: true } },
+    choices: [
+      { label: "\"…제 이름과 같은 어근이네요.\" 생각에 잠긴다.", goto: "ch8_depart" }
+    ]
+  },
+
+  ch8_depart: {
+    chapter: "제8장 · 약초 아룬드",
+    loc: "수도원 북문 · 아침",
+    text: `<p>떠나는 날 아침, 프리마는 당신에게 말린 약초 주머니 하나와 작은 편지를 주었다.</p>
+    <div class="dialogue">"이 약초는 길 위에서 열이 오를 때 쓰세요. 편지는… 길 끝의 어느 낯선 손이 당신에게 필요할 때 펼치세요. 제 이름은 <span class="emph">프리마</span>입니다. 이 이름을 기억해 주세요. 기억되지 않는 치유사는 슬픈 치유사이거든요."</div>
+    <p>유리카가 프리마에게 예를 차렸다.</p>
+    <div class="dialogue">"프리마 수녀님, 기억할게요. 3대가 기억할게요."</div>
+    <p>길이 다시 당신 앞에 뻗었다. 약초 아룬드의 마지막 향이 당신의 옷에 배어 있었다. 가슴은 여전히 무거웠지만, <span class="emph">그 무거움을 들고 걸을 수 있는 다리</span>가 이제 당신에게 있었다.</p>`,
+    effects: { item: "프리마의 약초 주머니", flag: { ch8_done: true } },
+    choices: [
+      { label: "서쪽 — 파비안느 공주의 흔적을 따라.", goto: "ch9_entry" }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // 제9장 · 파비안느 아룬드 — 미망의 나라, 이름의 비밀 (상세)
+  // ══════════════════════════════════════════════════════════════
+
+  ch9_entry: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 나라 · 경계의 안개 강",
+    text: `<p>약초 아룬드가 끝나고, 파비안느 아룬드의 첫 날 아침에 당신은 이스나미르 서쪽 끝에 도달했다. 그 끝에는 <span class="emph">안개의 강</span>이 흘렀다. 물이 아닌 안개가 강처럼 서쪽에서 동쪽으로 느리게 흘러가고 있었다. 사람들은 이 강을 <span class="emph">'미망의 강'</span>이라 불렀고, 강 건너편은 <span class="emph">'미망의 나라'</span>라고 불렀다. 2세기 전 실종된 공주 파비안느가 마지막으로 목격된 땅이었다.</p>
+    <p>강 앞에는 낡은 돌 다리가 있었다. 다리 한가운데에 한 늙은 사공이 앉아 있었다. 그는 배를 가지고 있지 않았다. 다만 <span class="emph">질문 두 개</span>를 쥐고 있었다.</p>
+    <div class="dialogue">"미망의 나라에 들어가려는 자. 두 질문에 답하시오. 답이 맞으면, 당신은 들어간다. 답이 틀리면, 당신은 들어간다 —하지만 당신이 찾는 사람을 <span class="emph">환상으로만</span> 만나게 된다."</div>`,
+    effects: { flag: { at_misty_land: true } },
+    choices: [
+      { label: "\"질문을 들려주십시오.\"", goto: "ch9_riddle_first" }
+    ]
+  },
+
+  ch9_riddle_first: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 다리",
+    text: `<p>사공은 고개를 들지 않은 채 첫 번째 질문을 했다.</p>
+    <div class="dialogue">"<span class="emph">당신의 이름은 몇 개입니까?</span>"</div>
+    <p>이상한 질문이었다. '파비안'—당신은 한 개의 이름을 가지고 있다. 그러나 가슴 속 어딘가가 '한 개가 아니다'라고 말했다. 당신은 9장에 도착하기 전에 몇 개의 이름을 들었는가. 크리스차넨. 그리고 파비안느의 어근을 함께 쓰는 자. 그리고 4장에서 할머니가 말한 '<span class="emph">기억의 아이</span>' 라는 이름도 당신의 것이었다.</p>`,
+    choices: [
+      { label: "\"하나입니다. 파비안.\"", goto: "ch9_ans_one" },
+      { label: "\"두 개입니다. 파비안, 그리고 크리스차넨.\"", goto: "ch9_ans_two" },
+      { label: "\"아직 세지 못했습니다. 이름이 계속 늘고 있어요.\"", goto: "ch9_ans_growing" }
+    ]
+  },
+
+  ch9_ans_one: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 다리",
+    text: `<p>사공은 아무 평가 없이 다음 질문으로 넘어갔다.</p>
+    <div class="dialogue">"좋소. 두 번째 질문이오."</div>
+    <p>당신은 잠깐 자신의 답을 돌아봤다. '하나'라고 답한 것은 아마도 <span class="emph">겸손</span>에 가깝지만, 미망의 나라는 겸손보다 <span class="emph">세심함</span>을 반긴다.</p>`,
+    effects: { flag: { answered_one_name: true } },
+    choices: [
+      { label: "두 번째 질문을 듣는다.", goto: "ch9_riddle_second" }
+    ]
+  },
+
+  ch9_ans_two: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 다리",
+    text: `<p>사공의 어깨가 약간 움직였다. 그것은 <span class="emph">흥미</span>의 표현이었다. 그는 고개를 살짝 들어 당신의 눈을 봤다. 그의 눈은 안개색이었다.</p>
+    <div class="dialogue">"두 개… 맞는 답에 가깝군. 하지만 당신은 이미 두 개보다 많은 이름을 들었소. 세 번째 이름은 <span class="emph">당신이 듣긴 들었는데 아직 자기 이름으로 받아들이지 않은 것</span>이오. 그 이름을 받아들일 때, 이 미망의 나라가 당신에게 진짜가 될 것이오."</div>`,
+    effects: { flag: { answered_two_names: true, hint_third_name: true }, stat: { mp: 1 } },
+    choices: [
+      { label: "두 번째 질문을 듣는다.", goto: "ch9_riddle_second" }
+    ]
+  },
+
+  ch9_ans_growing: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 다리",
+    text: `<p>사공은 처음으로 웃었다. 주름이 눈가에 번졌다.</p>
+    <div class="dialogue">"가장 정직한 답이오. 이름이 끝나지 않은 사람만이 이 강을 건너 진짜로 들어갈 수 있소. <span class="emph">이름이 정해졌다고 믿는 자는 들어가도 환상만 본다오</span>. 좋소. 두 번째 질문이오."</div>
+    <p>당신의 가슴 한 자락이 따뜻해졌다. 수녀 프리마의 흰 실이 팔목에서 살짝 떨렸다—좋은 답이라는 신호였다.</p>`,
+    effects: { flag: { answered_growing_name: true, full_entry: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "두 번째 질문을 듣는다.", goto: "ch9_riddle_second" }
+    ]
+  },
+
+  ch9_riddle_second: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 다리",
+    text: `<p>사공의 두 번째 질문은 짧았다.</p>
+    <div class="dialogue">"<span class="emph">당신은 누구를 찾으러 왔습니까?</span>"</div>
+    <p>당신은 이 질문을 준비하지 않고 왔다. 2세기 전의 공주 파비안느. 그 이름을 따라 왔다. 그러나 그 이름 너머에 <span class="emph">당신이 실제로 찾으려는 무엇</span>이 있었다.</p>`,
+    choices: [
+      { label: "\"공주 파비안느를 찾으러 왔습니다.\"", goto: "ch9_seek_princess" },
+      { label: "\"제 이름의 뿌리를 찾으러 왔습니다.\"", goto: "ch9_seek_root" },
+      { label: "\"…제 자신을 찾으러 왔습니다.\"", goto: "ch9_seek_self" }
+    ]
+  },
+
+  ch9_seek_princess: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 다리",
+    text: `<p>사공은 고개를 끄덕였다.</p>
+    <div class="dialogue">"정직한 답이지만, 반쪽 답이오. 그 공주를 찾는 진짜 이유는 <span class="emph">당신 안에 있는 그녀의 한 조각</span>이오. 그 조각이 당신을 여기까지 끌고 왔소."</div>
+    <p>그는 당신에게 길을 내어주었다. 다리 너머로 안개가 갈라졌다.</p>`,
+    effects: { flag: { seeking_princess: true } },
+    choices: [
+      { label: "다리를 건넌다.", goto: "ch9_across_bridge" }
+    ]
+  },
+
+  ch9_seek_root: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 다리",
+    text: `<p>사공의 눈이 잠깐 빛났다.</p>
+    <div class="dialogue">"그 뿌리는 이 나라의 흙 속에 있소. 당신의 이름은 이 나라의 한 잎사귀에서 떨어진 씨앗이오. 씨앗이 2백 년 만에 돌아온 것이오. 반가운 일이오."</div>
+    <p>그는 당신에게 손을 들어 길을 내어주었다.</p>`,
+    effects: { flag: { seeking_root: true }, stat: { mp: 1 } },
+    choices: [
+      { label: "다리를 건넌다.", goto: "ch9_across_bridge" }
+    ]
+  },
+
+  ch9_seek_self: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 다리",
+    text: `<p>사공이 천천히 일어섰다. 처음으로 그가 두 다리로 서는 모습을 본 것이다. 그는 생각보다 키가 컸다.</p>
+    <div class="dialogue">"좋은 답이오. 이 나라는 <span class="emph">자기 자신을 찾는 자</span>에게 가장 친절하오. 당신이 거기서 만나는 모든 사람—공주 파비안느, 옛 왕, 영원의 자—이 모두 당신의 한 조각이오. 그들을 만난 뒤, 당신은 조각을 모아 한 사람이 되어 이 강을 다시 건너게 될 것이오."</div>
+    <p>그는 당신의 이마에 손가락을 얕게 얹었다. 차가운 감촉이 <span class="emph">당신의 이마 한복판에 하나의 작은 별</span>을 찍었다. 당신은 그 별을 볼 수 없었지만, 느낄 수 있었다.</p>`,
+    effects: { flag: { seeking_self: true, forehead_star: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "다리를 건넌다.", goto: "ch9_across_bridge" }
+    ]
+  },
+
+  ch9_across_bridge: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 나라 · 안개의 풀밭",
+    text: `<p>다리 건너는 어느 정도 걸었는지 알 수 없었다. 시간이 이곳에서는 늘어났다 줄어들었다 했다. 안개가 당신의 허리 높이까지 차올랐다가, 다시 무릎 아래로 내려가기를 반복했다.</p>
+    <p>안개 속에서 <span class="emph">여러 사람의 목소리</span>가 섞여 들렸다. 한 여자아이가 "어머니!" 하고 소리쳤다. 한 노인이 "파비안… 그 이름은…"이라고 중얼거리다 소리가 끊겼다. 유리카의 목소리도 섞여 있었다—<span class="emph">그녀가 아주 먼 옛날에 부른 노래</span>가 당신이 모르는 가사로 들려왔다.</p>
+    <p>유리카는 당신의 손을 잡고 있었다. 그녀의 손의 온도로 당신은 어디가 환상이고 어디가 현실인지를 구분했다. 유리카가 여기서 <span class="emph">닻</span>이었다.</p>`,
+    choices: [
+      { label: "목소리들 중 하나를 쫓아간다—여자아이의 \"어머니\".", goto: "ch9_follow_child" },
+      { label: "노인의 목소리를 쫓아간다.", goto: "ch9_follow_oldman" },
+      { label: "유리카의 노래만 듣는다. 다른 목소리 무시.", goto: "ch9_follow_yurica" }
+    ]
+  },
+
+  ch9_follow_child: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속의 아이",
+    text: `<p>여자아이의 목소리가 뚜렷해졌다. 당신이 가까이 가자, 안개가 걷히고 여자아이의 모습이 드러났다. 일곱 여덟 살. 검은 머리. <span class="emph">녹빛과 은빛이 섞인 이상한 눈동자</span>.</p>
+    <p>아이는 당신을 보고 멈췄다. 그리고 곧 당신에게 뛰어왔다.</p>
+    <div class="dialogue">"오빠! 드디어 왔네. 내 방에 오빠가 들어오던 날이 기억나?"</div>
+    <p>당신은 기억이 없었다. 그러나 당신의 가슴 한 조각이 '있다'고 말했다. 꿈에서만 본 듯한 방. 작은 침대. 이 아이가 앉아 있던 창가.</p>
+    <div class="dialogue whisper">"나는 당신의 여동생이야. 2백 년 전에 사라진. <span class="emph">파비안느</span>."</div>
+    <p>유리카의 손이 당신의 손을 세게 쥐었다. '이건 진실이에요'라는 신호였다.</p>`,
+    effects: { flag: { met_child_pabianne: true, pabianne_is_sister: true } },
+    choices: [
+      { label: "아이를 안는다.", goto: "ch9_hug_pabianne" },
+      { label: "\"…어떻게 내가 너의 오빠일 수 있지?\" 먼저 확인한다.", goto: "ch9_ask_sister" }
+    ]
+  },
+
+  ch9_follow_oldman: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속의 노인",
+    text: `<p>노인의 목소리를 쫓아가자, 하얀 수염의 늙은 남자가 바위 위에 앉아 있었다. 그는 당신을 보자 한숨을 내쉬었다.</p>
+    <div class="dialogue">"결국 왔구나. 나는 <span class="emph">이스나미르 옛 왕 라두르</span>. 2백 년 전 네 여동생을 이 미망의 나라에 맡긴 왕이다. 즉 너의 <span class="emph">7대 전 할아버지</span>이기도 하지. 이 나라 안에서는 세대의 거리가 짧아진다. 너와 나 사이 2백 년의 겹이 얇아져 있다."</div>
+    <p>그는 당신에게 낡은 반지 하나를 내밀었다. 반지에는 <span class="emph">'파비안느—파비안'</span>이라는 두 이름이 새겨져 있었다.</p>
+    <div class="dialogue">"이 반지는 너의 여동생의 것이다. 그녀가 마지막으로 '언젠가 오빠가 올 것이다'라는 확신으로 너에게 남겼다. 그녀의 오빠—너—는 당시 태어나지 않았지만, 그녀는 2백 년을 이 미망 속에서 기다릴 수 있는 존재가 되었다."</div>`,
+    effects: { flag: { met_old_king: true, got_siblings_ring: true }, item: "파비안느의 반지" },
+    choices: [
+      { label: "반지를 받고, 파비안느를 찾아 나선다.", goto: "ch9_follow_child" }
+    ]
+  },
+
+  ch9_follow_yurica: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속 · 유리카의 노래만 따라",
+    text: `<p>당신은 다른 목소리를 무시하고 유리카의 노래만을 따라 걸었다. 그 노래는 당신이 이해할 수 없는 가사였지만, 선율은 당신의 발을 이끌었다.</p>
+    <p>유리카는 노래를 멈추지 않았다. 한참을 걸은 뒤, 당신은 작은 하얀 탑 앞에 도착했다. 탑 앞에서 유리카가 노래를 멈추었다.</p>
+    <div class="dialogue">"이 탑이에요. 제가 전 여정에서 파비안느를 처음 만난 곳이에요. 저는 이 탑 밖에서 기다리고, 당신 혼자 들어가요. 탑 안에는 <span class="emph">이번엔 아이가 아니라 성장한 파비안느</span>가 있을 거예요. 그녀에게 무엇을 물을지는 당신만이 결정해요."</div>`,
+    effects: { flag: { yurica_guided_tower: true, adult_pabianne: true } },
+    choices: [
+      { label: "탑 문을 연다.", goto: "ch9_tower_princess" }
+    ]
+  },
+
+  ch9_hug_pabianne: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속 · 파비안느 옆",
+    text: `<p>당신은 무릎을 꿇고 아이를 안았다. 아이의 몸은 생각보다 따뜻했다. 환상이 아니었다.</p>
+    <p>아이는 당신의 어깨에 얼굴을 묻었다. 그리고 작은 목소리로 말했다.</p>
+    <div class="dialogue whisper">"오빠, 나는 오빠가 태어나기 전에 죽었어. 하지만 죽은 게 아니라, 이 미망의 나라로 넘어온 거야. 여기서 나는 <span class="emph">항상 일곱 살</span>이야. 오빠가 올 때까지 기다리려고 그렇게 된 거야."</div>
+    <p>그녀는 당신의 어깨에서 고개를 떼고, 당신의 눈을 보았다.</p>
+    <div class="dialogue">"이제 오빠 왔으니까, 나는 한 번 자라도 돼. 성장한 내가 오빠에게 해주고 싶은 말이 있었거든. 잠깐만 기다려줘."</div>
+    <p>아이의 몸이 <span class="emph">빛으로 한 번 번쩍였다</span>. 당신이 다시 눈을 떴을 때, 당신 앞에는 열여덟 살쯤 된 여인이 서 있었다. 같은 녹빛과 은빛 눈.</p>`,
+    effects: { flag: { pabianne_grew_up: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "성장한 파비안느의 말을 듣는다.", goto: "ch9_adult_pabianne" }
+    ]
+  },
+
+  ch9_ask_sister: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속",
+    text: `<p>아이는 당신을 빤히 쳐다봤다.</p>
+    <div class="dialogue">"어려운 거야. 우리는 한 어머니에게서 나지 않았어. 나는 2백 년 전 이스나미르의 공주였고, 오빠는 아르메나와 이스나미르의 피를 동시에 받은 아이야. 우리를 묶는 건 <span class="emph">이름</span>이야. 내 이름이 오빠의 이름의 뿌리거든. 오빠의 아버지가 나에게 오빠의 이름을 줬어. 아버지는 내가 어렸을 때 한 번 이 미망의 나라에 들어왔었어. 그때 내가 아버지에게 '당신의 첫 아들에게 <span class="emph">파비안</span>이라는 이름을 주세요'라고 했어. 그래서 오빠가 태어났을 때 그 이름을 받은 거야."</div>
+    <p>이것이 당신 이름의 뿌리였다. <span class="emph">한 여자아이의 유언에 가까운 부탁</span>에서 온 이름.</p>`,
+    effects: { flag: { learned_name_origin: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "파비안느를 안는다.", goto: "ch9_hug_pabianne" }
+    ]
+  },
+
+  ch9_adult_pabianne: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속 · 성장한 파비안느",
+    text: `<p>성장한 파비안느는 당신의 얼굴을 한동안 바라봤다. 그녀의 눈에는 <span class="emph">여동생의 눈</span>과 <span class="emph">7대 전 공주의 눈</span>이 겹쳐 있었다.</p>
+    <div class="dialogue">"오빠. 나는 2백 년 동안 네 가지를 지켜봤어. 나라가 둘로 갈라진 거, 우리 가문이 한 번 끊어졌다가 숨어서 이어진 거, 아버지가 이스나미르로 가서 네 어머니를 만난 거, 그리고 네가 태어난 거. 나는 지켜만 봤어. 내가 할 수 있는 건 그뿐이었어."</div>
+    <p>그녀는 당신의 손을 잡았다. 그 손은 아이의 손보다 컸지만, 온도는 같았다.</p>
+    <div class="dialogue">"이제 오빠에게 줄 것이 두 개야. 하나는 <span class="emph">내 이름</span>—이걸 받으면 오빠는 이름이 세 개가 돼. 파비안, 크리스차넨, 그리고 파비안느. 세 이름 중 하나로 오빠는 길 끝에서 자신을 소개할 수 있어. 다른 하나는 <span class="emph">내 생명의 반쪽</span>이야. 내가 이 미망 속에서 200년을 살아남은 생명력이야. 받으면 오빠가 길 끝에서 한 번 더 일어설 수 있어. 그러나 받으면 나는 <span class="emph">이 미망의 나라에서 사라져</span>. 완전히."</div>`,
+    choices: [
+      { label: "이름과 생명 둘 다 받는다.", goto: "ch9_take_both" },
+      { label: "이름만 받는다. 생명은 거절한다.", goto: "ch9_take_name_only" },
+      { label: "둘 다 거절한다. \"네가 여기 있어줘.\"", goto: "ch9_refuse_both" }
+    ]
+  },
+
+  ch9_take_both: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속",
+    text: `<p>당신은 두 손을 내밀었다. 파비안느는 자신의 목걸이—그녀의 이름이 새겨진 작은 메달—를 당신에게 걸어주었다. 그리고 당신의 가슴에 손을 얹었다. 한 덩이의 따뜻함이 당신 안으로 들어왔다.</p>
+    <p>파비안느의 몸이 점점 반투명해졌다. 그녀는 웃고 있었다. 울지 않았다.</p>
+    <div class="dialogue whisper">"2백 년 기다린 보람이 있네, 오빠. 길 끝에서 한 번 더 일어설 때, 내 몫으로 일어서 줘. 그러면 나도 거기 같이 선 거니까."</div>
+    <p>그녀가 사라진 자리에 은빛 별 하나가 떠올라, 당신의 목걸이 사파이어에 녹아들었다. 사파이어가 한 번 크게 박동했다. 새로운 조각이 들어간 것이다.</p>
+    <p>유리카가 당신의 뒤에서 조용히 울고 있었다.</p>`,
+    effects: { flag: { pabianne_full_gift: true, has_extra_life: true }, item: "파비안느의 메달", stat: { mp: 4, hp: 3 } },
+    choices: [
+      { label: "유리카의 손을 잡고, 미망의 나라 밖으로 걷는다.", goto: "ch9_exit_mist" }
+    ]
+  },
+
+  ch9_take_name_only: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속",
+    text: `<p>당신은 메달만 받았다. 파비안느는 고개를 끄덕였다.</p>
+    <div class="dialogue">"지혜로워. 나를 이 미망 속에 남겨두고 가는 거지. 좋아. 그럼 나는 계속 이 나라를 지킬게. 오빠가 길 끝에서 자기 몫으로 일어서 줘. 내 몫까지 짊어지지 말고."</div>
+    <p>그녀는 당신의 이마에 가볍게 입을 맞추었다. 그 입맞춤이 <span class="emph">공주의 축복</span>이었다.</p>
+    <div class="dialogue whisper">"오빠. 한 가지만 기억해 줘. 이름이 세 개가 되면, 오빠는 <span class="emph">자기 안에 세 사람이 함께 걷는 사람</span>이 돼. 외롭지 않을 거야. 어느 순간 거울을 봐도, 오빠 혼자가 아니라 셋이 함께 비칠 거야."</div>`,
+    effects: { flag: { pabianne_name_only: true, three_names: true }, item: "파비안느의 메달", stat: { mp: 3, hp: 1 } },
+    choices: [
+      { label: "메달을 목에 걸고, 미망 밖으로.", goto: "ch9_exit_mist" }
+    ]
+  },
+
+  ch9_refuse_both: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "안개 속",
+    text: `<p>당신은 그녀의 손을 오래 잡았다. 그리고 천천히 고개를 저었다.</p>
+    <div class="dialogue">"네가 이 나라에 있어줘. 내가 길 끝에서 넘어지면 넘어지는 거야. 너는 여기서 아이들의 노래가 되어, 언젠가 또 다른 내가 올 때 이 노래를 계속 불러줘."</div>
+    <p>파비안느는 잠시 당신을 바라봤다. 그녀의 눈에 오랜만의 <span class="emph">편안함</span>이 들어왔다.</p>
+    <div class="dialogue">"오빠… 이렇게 말해준 사람은 처음이야. 고마워. 그러면 나는 여기서 오빠의 다음 여정을 기다릴게. 오빠가 길 끝에서 살아 있으면, 어느 날 우리 집 가게 뒷마당에 <span class="emph">작은 별 하나</span>가 밤마다 뜰 거야. 그게 나야."</div>`,
+    effects: { flag: { pabianne_stays: true, refused_gifts: true }, stat: { mp: 2, hp: -1 } },
+    choices: [
+      { label: "그녀에게 오래 작별 인사를 하고, 미망 밖으로.", goto: "ch9_exit_mist" }
+    ]
+  },
+
+  ch9_tower_princess: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "하얀 탑 · 꼭대기 방",
+    text: `<p>탑의 꼭대기 방에는 한 젊은 여인이 창가에 서 있었다. 그녀의 머리카락은 당신의 어머니 네냐플의 머리카락과 같은 갈색이었다. 그러나 그녀의 눈은 <span class="emph">녹빛과 은빛이 섞여</span> 있었다.</p>
+    <p>그녀는 돌아보지 않은 채 말했다.</p>
+    <div class="dialogue">"오빠. 나는 파비안느. 2백 년 전 사라진 공주. 엄밀히는 사라진 게 아니라, <span class="emph">다음 세기를 기다려야 할 일이 있어서</span> 여기서 멈춘 거야."</div>
+    <p>그녀는 당신에게 돌아섰다. 그녀의 얼굴은 당신이 거울에서 수없이 봐온 얼굴과 닮았다. 당신의 얼굴에서 남성적인 부분을 지우면, 이 여인의 얼굴이 될 것이었다.</p>
+    <div class="dialogue">"우리가 한 얼굴을 나누어 가진 이유는, 우리가 <span class="emph">같은 영혼의 두 조각</span>이기 때문이야. 오빠는 그 영혼의 이번 세기 몫, 나는 지난 세기 몫."</div>`,
+    effects: { flag: { met_adult_pabianne_direct: true, same_soul_truth: true }, stat: { mp: 2 } },
+    choices: [
+      { label: "\"…우리가 같은 영혼이라면, 내가 너를 만나는 건 무슨 뜻이지?\"", goto: "ch9_soul_split" }
+    ]
+  },
+
+  ch9_soul_split: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "하얀 탑",
+    text: `<p>파비안느는 미소 지었다.</p>
+    <div class="dialogue">"영혼이 분리된 뒤 처음 만나는 거야. 이번 여정은 그래서 특별해. 우리는 <span class="emph">한 사람으로 합쳐질 수 있어</span>. 합치면 오빠는 이 미망 바깥에서 계속 걷지만, 나의 기억과 내 힘을 모두 안고 걸어. 합치지 않으면 오빠는 오빠의 몫만으로 걸어. 대신 나는 여기 남아서, 오빠의 다음 세기 조카에게 이 모든 이야기를 전해줄 수 있어."</div>
+    <p>두 선택 모두 의미가 있었다. 어느 쪽도 틀리지 않았다. 유리카의 목소리가 탑 아래에서 들려왔다. <span class="whisper">"당신의 선택을 따를게요."</span></p>`,
+    choices: [
+      { label: "그녀와 하나로 합친다.", goto: "ch9_unite" },
+      { label: "그녀를 이곳에 남겨둔다.", goto: "ch9_separate" }
+    ]
+  },
+
+  ch9_unite: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "하얀 탑 · 합쳐지는 순간",
+    text: `<p>파비안느는 당신을 꽉 안았다. 두 사람의 몸이 한순간 겹쳤다. 당신의 시야에 <span class="emph">2백 년의 기억</span>이 한꺼번에 쏟아져 들어왔다. 어렸을 적 궁정의 풍경, 미망의 나라로 걸어 들어오던 그 밤, 2백 년 동안 지켜본 7대의 왕들, 아버지 아쉬하르가 이 탑에 와서 울고 간 그 저녁, 오빠인 당신이 태어나는 순간을 멀리서 지켜본 새벽.</p>
+    <p>모든 것이 당신 안에 자리를 잡았다. 당신은 더는 '파비안' 한 사람만의 기억을 가진 사람이 아니었다. <span class="emph">2백 년의 폭</span>이 당신 안에 있었다.</p>
+    <p>이 무게는 매일 당신을 조금 짓누를 것이다. 그러나 동시에, 매일 당신을 조금 더 깊게 할 것이다. 유리카가 당신을 알아봤다—그녀는 이번 여정에서 이 '합쳐진 파비안'을 처음으로 만난 것이었다.</p>
+    <div class="dialogue">"합쳐진 당신은 <span class="emph">더 고요한 사람</span>이에요. 마음에 들어요."</div>`,
+    effects: { flag: { united_with_pabianne: true, holds_two_centuries: true }, stat: { mp: 4, hp: 2 } },
+    choices: [
+      { label: "탑에서 내려와, 유리카와 함께 미망을 나온다.", goto: "ch9_exit_mist" }
+    ]
+  },
+
+  ch9_separate: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "하얀 탑",
+    text: `<p>당신은 그녀의 손을 놓지 않은 채, 웃으며 말했다.</p>
+    <div class="dialogue">"네 몫을 네가 살아. 내 몫은 내가 살게. 언젠가 다음 세기의 조카가 오면, 네가 그 아이에게 우리 이야기를 해줘."</div>
+    <p>파비안느는 안도의 한숨을 쉬었다. 그녀도 아마 합침보다 이것을 원했던 것이었다.</p>
+    <div class="dialogue">"고마워, 오빠. 내 몫을 나로서 살게 해줘서. 대신 이 메달을 받아가. 길 끝에서 네가 넘어질 때, 이 메달이 한 번 너를 일으켜줄 거야."</div>
+    <p>그녀는 당신의 목에 메달을 걸어주었다. 그리고 창밖을 가리켰다. 탑 아래 유리카가 기다리고 있었다.</p>
+    <div class="dialogue whisper">"저 사람 잘 챙겨. 그녀는 몇 번째 여정인지 모르지만, 이번엔 <span class="emph">길 끝까지 같이 갈 여자야</span>."</div>`,
+    effects: { flag: { separated_from_pabianne: true, yurica_destined: true }, item: "파비안느의 메달", stat: { mp: 2, hp: 2 } },
+    choices: [
+      { label: "탑에서 내려온다.", goto: "ch9_exit_mist" }
+    ]
+  },
+
+  ch9_exit_mist: {
+    chapter: "제9장 · 파비안느 아룬드",
+    loc: "미망의 강 · 동쪽 다리",
+    text: `<p>미망의 나라 동쪽 끝에, 사공이 기다리는 다리가 또 있었다. 들어올 때의 다리와 같았지만, 방향이 반대였다. 나오는 길은 언제나 들어가는 길보다 짧게 느껴진다.</p>
+    <p>사공이 당신의 얼굴을 보더니, 처음으로 고개를 깊이 숙였다.</p>
+    <div class="dialogue">"이제 당신의 이름은 세 개요. 당신은 이 강을 두 번 건넌 자요. 두 번 건넌 자는 이 강의 <span class="emph">이름을 부를 수 있소</span>. 이 강의 이름은 '<span class="emph">이름들의 강</span>'이오. 당신이 이 이름을 기억하면, 이 강은 당신을 언제든 다시 받을 것이오."</div>
+    <p>유리카가 당신의 손을 잡고 다리를 건넜다. 강 반대편에서 해가 뜨고 있었다. 파비안느 아룬드의 후반이었다.</p>`,
+    effects: { flag: { ch9_done: true, knows_river_name: true } },
+    choices: [
+      { label: "10장 — 환영주 아룬드의 길로.", goto: "ch10_entry" }
+    ]
   }
 };
 
